@@ -2,11 +2,13 @@
     {
         "romazi": "pen",
         "kana": "ペン",
+        "kanzi": "ペン",
         "english": "pen"
     },
     {
         "romazi": "kaban",
         "kana": "かばん",
+        "kanzi": "鞄",
         "english": "bag"
     }
 ]

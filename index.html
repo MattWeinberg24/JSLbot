@@ -5,15 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="testing.js"></script>
+    <script src="main.js"></script>
     <title>JSLBot</title>
 </head>
 <body>
-    <h1>JSL Quiz</h1>
-    <h2 id="word"></h2>
-    <input type="text" id="inp">
-    <button onclick="confirmAnswer()">Clickme</button>
-    <h2 id="result"></h2>
+    <div id="app">
+        <h2 id="word"></h2>
+        <form id="inp">
+            <input type="text" id="inpbox">
+            <button>Clickme</button>
+        </form>
+        
+        <h2 id="result"></h2>
+    </div>
+    <div id="options">
+
+    </div>
+    
 </body>
 </html>

@@ -2,12 +2,16 @@ var currentWord;
 
 $(document).ready(function(){
     randomKanaNominal();
+    $("#inp").on("submit", function(e) {
+        e.preventDefault();
+        confirmAnswer();
+    });
 });
 
 function confirmAnswer(){
-    var answer = document.getElementById("inp").value;
+    var answer = document.getElementById("inpbox").value;
     if (answer != ""){
-        if (answer == currentWord.english){
+        if (answer.toLowerCase() == currentWord.english){
             document.getElementById("result").innerHTML = "はい";
         }
         else {
@@ -20,7 +24,7 @@ function confirmAnswer(){
 }
 
 function randomKanaNominal(){
-    document.getElementById("inp").value = "";
+    document.getElementById("inpbox").value = "";
     document.getElementById("result").innerHTML = "";
     useJSONFromFile("nominals.json", function(nominals){
         var num = Math.floor(Math.random() * nominals.length);
