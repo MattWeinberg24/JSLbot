@@ -13,16 +13,32 @@
 <body>
     <div id="app">
         <h2 id="word"></h2>
-        <form id="inp">
+        <form id="inp" autocomplete="off">
             <input type="text" id="inpbox">
             <button>Clickme</button>
         </form>
-        
         <h2 id="result"></h2>
     </div>
     <div id="options">
-
+        <h3>Prompt:</h3>
+        <input type="radio" name="qlang" id="english-option-q" checked>
+        <label for="english">English</label>
+        <input type="radio" name="qlang" id="romazi-option-q">
+        <label for="english">Romazi (JSL)</label>
+        <input type="radio" name="qlang" id="kana-option-q">
+        <label for="english">Hiragana/Katakana</label>
+        <input type="radio" name="qlang" id="kanzi-option-q">
+        <label for="english">Kanzi</label>
+        <h3>Answer With:</h3>
+        <input type="radio" name="alang" id="english-option-a" checked>
+        <label for="english">English</label>
+        <input type="radio" name="alang" id="romazi-option-a">
+        <label for="english">Romazi (JSL)</label>
+        <input type="radio" name="alang" id="kana-option-a">
+        <label for="english">Hiragana/Katakana</label>
+        <input type="radio" name="alang" id="kanzi-option-a">
+        <label for="english">Kanzi</label>
+        
     </div>
-    
 </body>
 </html>
