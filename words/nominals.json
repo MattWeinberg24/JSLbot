@@ -1,0 +1,44 @@
+[
+    {
+        "romazi": ["aisukuriimu"],
+        "kana": ["アイスクリーム"],
+        "kanzi": ["アイスクリーム"],
+        "english": ["icecream","ice cream"],
+        "category": "food"
+    },
+    {
+        "romazi": ["kasa"],
+        "kana": ["かさ"],
+        "kanzi": ["傘"],
+        "english": ["umbrella"],
+        "category": "item"
+    },
+    {
+        "romazi": ["kaban"],
+        "kana": ["かばん"],
+        "kanzi": ["鞄"],
+        "english": ["bag"],
+        "category": "item"
+    },
+    {
+        "romazi": ["koohii"],
+        "kana": ["コーヒー"],
+        "kanzi": ["コーヒー"],
+        "english": ["coffee"],
+        "category": "drink"
+    },
+    {
+        "romazi": ["pai"],
+        "kana": ["パイ"],
+        "kanzi": ["パイ"],
+        "english": ["pie"],
+        "category": "food"
+    },
+    {
+        "romazi": ["pen"],
+        "kana": ["ペン"],
+        "kanzi": ["ペン"],
+        "english": ["pen"],
+        "category": "item"
+    }
+]

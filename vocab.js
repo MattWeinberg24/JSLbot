@@ -1,12 +1,21 @@
 var currentWord; //holds the current word
-var expected; //holds the expected answer (for when user is incorrect)
+var answered = false; //true when user has answered and is viewing the result, false otherwise
 
 //runs when website is loaded
 $(document).ready(function(){
     randomKanaNominal();
     $("#inp").on("submit", function(e) {
         e.preventDefault();
-        confirmAnswer();
+        if(answered){
+            randomKanaNominal();
+            document.getElementById("continue-button").innerHTML = "Submit";
+            answered = false;
+        }
+        else {
+            confirmAnswer();
+            document.getElementById("continue-button").innerHTML = "Next Word";
+            answered = true;
+        }
     });
 });
 
@@ -18,33 +27,21 @@ function confirmAnswer(){
             document.getElementById("result").innerHTML = "はい";
         }
         else {
-            var message = "いいえ<br>Correct Answer: " + expected;
-            document.getElementById("result").innerHTML = message;
-
+            document.getElementById("result").innerHTML = "いいえ";
         }
-        setTimeout(function(){
-            randomKanaNominal();
-        },2000);
     }
 }
 
 //determine if the user input matches the expected answer
 function correct(answer){
     if(document.getElementById("english-option-a").checked){
-        expected = capitalize(currentWord.english[0]);
+        document.getElementById("correct-answers").innerHTML = capitalize(currentWord.english[0]);
         return currentWord.english.includes(answer);
     }
-    else if(document.getElementById("romazi-option-a").checked){
-        expected = currentWord.romazi;
-        return answer == expected;   
-    }
-    else if(document.getElementById("kana-option-a").checked){
-        expected = currentWord.kana;
-        return answer == expected;
-    }
     else{
-        expected = currentWord.kanzi;
-        return answer == expected;
+        var message = currentWord.romazi + ", " + currentWord.kana + (currentWord.kana == currentWord.kanzi ? "" : ", " + currentWord.kanzi);
+        document.getElementById("correct-answers").innerHTML = message;
+        return answer == currentWord.romazi || answer == currentWord.kana || answer == currentWord.kanzi;
     }
 }
 
@@ -52,8 +49,9 @@ function randomKanaNominal(){
     //reset the app
     document.getElementById("inpbox").value = "";
     document.getElementById("result").innerHTML = "";
+    document.getElementById("correct-answers").innerHTML = "";
 
-    $.getJSON("nominals.json", function(nominals){
+    $.getJSON("words/nominals.json", function(nominals){
         var num = Math.floor(Math.random() * nominals.length);
         currentWord = nominals[num]; //change num to manually select word
         if(document.getElementById("english-option-q").checked){

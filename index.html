@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="main.js"></script>
+    <script src="vocab.js"></script>
     <title>JSLBot</title>
 </head>
 <body>
@@ -15,30 +15,26 @@
         <h2 id="word"></h2>
         <form id="inp" autocomplete="off">
             <input type="text" id="inpbox">
-            <button>Clickme</button>
+            <button id="continue-button">Submit</button>
         </form>
         <h2 id="result"></h2>
+        <h2 id="correct-answers"></h2>
     </div>
     <div id="options">
         <h3>Prompt:</h3>
         <input type="radio" name="qlang" id="english-option-q" checked>
-        <label for="english">English</label>
+        <label for="english-option-q">English</label>
         <input type="radio" name="qlang" id="romazi-option-q">
-        <label for="english">Romazi (JSL)</label>
+        <label for="romazi-option-q">Romazi (JSL)</label>
         <input type="radio" name="qlang" id="kana-option-q">
-        <label for="english">Hiragana/Katakana</label>
+        <label for="kana-option-q">Hiragana/Katakana</label>
         <input type="radio" name="qlang" id="kanzi-option-q">
-        <label for="english">Kanzi</label>
+        <label for="kanzi-option-q">Kanzi</label>
         <h3>Answer With:</h3>
-        <input type="radio" name="alang" id="english-option-a" checked>
-        <label for="english">English</label>
-        <input type="radio" name="alang" id="romazi-option-a">
-        <label for="english">Romazi (JSL)</label>
-        <input type="radio" name="alang" id="kana-option-a">
-        <label for="english">Hiragana/Katakana</label>
-        <input type="radio" name="alang" id="kanzi-option-a">
-        <label for="english">Kanzi</label>
-        
+        <input type="radio" name="alang" id="english-option-a">
+        <label for="english-option-a">English</label>
+        <input type="radio" name="alang" id="japanese-option-a" checked>
+        <label for="japanese-option-a">Japanese (Any)</label>
     </div>
 </body>
 </html>
