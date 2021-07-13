@@ -1,4 +1,4 @@
-[
+{ "nominals": [
     {
         "romazi": ["aisukuriimu"],
         "kana": ["アイスクリーム"],
@@ -41,4 +41,4 @@
         "english": ["pen"],
         "category": "item"
     }
-]
+]}
