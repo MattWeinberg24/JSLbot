@@ -4,6 +4,11 @@ var answered = false; //true when user has answered and is viewing the result, f
 
 //runs when website is loaded
 $(document).ready(function(){
+
+    $.getJSON("words.json", function(words){
+       console.log(stem(words.verbals[0]));
+    });
+
     randomKanaNominal();
     renderTable();
     $("#inp").on("submit", function(e) {

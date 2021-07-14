@@ -1,4 +1,5 @@
-{ "nominals": [
+{ 
+"nominals": [
     {
         "romazi": ["aisukuriimu"],
         "kana": ["アイスクリーム"],
@@ -41,4 +42,19 @@
         "english": ["pen"],
         "category": "item"
     }
-]}
+],
+
+"verbals": [
+    {
+        "romazi": "wakaru",
+        "kana": "わかる",
+        "kanzi": "分かる",
+        "english": ["understand"],
+        "ru": false,
+        "operational": false
+    }
+
+
+]
+}
+
