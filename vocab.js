@@ -4,15 +4,22 @@ var answered = false; //true when user has answered and is viewing the result, f
 
 //runs when website is loaded
 $(document).ready(function(){
-
-    $.getJSON("words.json", function(words){
-       console.log(stem(words.verbals[0]));
-    });
-
     randomKanaNominal();
     renderTable();
+    document.querySelectorAll("th").forEach(th => {
+        th.addEventListener("click", () => {
+            var table = th.parentElement.parentElement.parentElement;
+            var headerIndex = Array.prototype.indexOf.call(th.parentElement.children, th);
+            var isAscending = th.classList.contains("th-sort-asc");
+            sortTable(table, headerIndex, !isAscending);
+        });
+    });
+    $("input[name='qlang']").change(function(){
+        randomKanaNominal();
+    });
     $("#inp").on("submit", function(e) {
         e.preventDefault();
+        //sortTable(document.querySelector("table"),3,true)
         if(answered){
             randomKanaNominal();
             document.getElementById("continue-button").innerHTML = "Submit";
@@ -30,13 +37,22 @@ $(document).ready(function(){
 function confirmAnswer(){
     var answer = document.getElementById("inpbox").value.toLowerCase();
     if(answer != ""){
+        //locate current table row
+        var tableRow;
+        Array.from(document.getElementById("vocab-list").rows).every(row => {
+            if (row.cells[0].innerHTML == currentWord.kanzi){
+                tableRow = row;
+                return false;
+            }
+            return true;
+        });
         if (correct(answer)){
             document.getElementById("result").innerHTML = "はい";
-            document.getElementById("vocab-list").rows[currentWordIndex + 1].style.backgroundColor = "green";
+            tableRow.style.backgroundColor = "green";
         }
         else {
             document.getElementById("result").innerHTML = "いいえ";
-            document.getElementById("vocab-list").rows[currentWordIndex + 1].style.backgroundColor = "red";
+            tableRow.style.backgroundColor = "red";
         }
     }
 }
@@ -79,7 +95,7 @@ function randomKanaNominal(){
 }
 
 function renderTable(){
-    var table = document.getElementById("vocab-list");
+    var table = document.getElementById("vocab-list").querySelector("tbody");
     $.getJSON("words.json", function(words){
         words.nominals.forEach(function(nominal){
             var row = table.insertRow();
@@ -97,6 +113,34 @@ function renderTable(){
     });
     
 }
+
+/**
+ * Sorts an HTML table
+ * (Adapted from dcode's YouTube tutorial)
+ * 
+ * @param {HTMLTableElement} table The Table to sort
+ * @param {number} column The index of the column to sort
+ * @param {boolean} asc True if the sorting will be ascending
+ */
+function sortTable(table, column, asc = true){
+    var tBody = table.tBodies[0];
+    var header = table.tHead.rows[0].cells;
+    var dirModifier = asc ? 1 : -1;
+    var rows = Array.from(tBody.rows);
+    var sortedRows = rows.sort(function(a,b){
+        var aColText = a.cells[column].innerHTML;
+        var bColText = b.cells[column].innerHTML;
+        return aColText > bColText ? (1*dirModifier) : (-1*dirModifier);
+    });
+    while(tBody.firstChild){
+        tBody.removeChild(tBody.firstChild);
+    }
+    tBody.append(...sortedRows);
+    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
+    header[column].classList.toggle("th-sort-asc",asc);
+    header[column].classList.toggle("th-sort-desc",!asc);
+}
+    
 
 //capitalizes first letter of str
 function capitalize(str){
