@@ -1,4 +1,7 @@
-//returns the stem of a verbal in romazi
+/**
+ * @param {object} verbal A verbal (in the format from words.json) 
+ * @returns {string} The stem of the verbal
+ */
 function stem(verbal){
     if(verbal.ru){
         return verbal.romazi.substring(0, verbal.romazi.length - 2);

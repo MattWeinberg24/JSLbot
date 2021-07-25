@@ -3,25 +3,23 @@ var currentWordIndex; //holds the current word index
 var answered = false; //true when user has answered and is viewing the result, false otherwise
 
 //runs when website is loaded
-$(document).ready(function(){
-    randomKanaNominal();
+$(document).ready(() => {
+    randomWord();
     renderTable();
-    document.querySelectorAll("th").forEach(th => {
+    $("th").each((i, th) => {
         th.addEventListener("click", () => {
             var table = th.parentElement.parentElement.parentElement;
-            var headerIndex = Array.prototype.indexOf.call(th.parentElement.children, th);
             var isAscending = th.classList.contains("th-sort-asc");
-            sortTable(table, headerIndex, !isAscending);
+            sortTable(table, i, !isAscending);
         });
     });
     $("input[name='qlang']").change(function(){
-        randomKanaNominal();
+        randomWord();
     });
-    $("#inp").on("submit", function(e) {
+    $("#inp").submit(e => {
         e.preventDefault();
-        //sortTable(document.querySelector("table"),3,true)
         if(answered){
-            randomKanaNominal();
+            randomWord();
             document.getElementById("continue-button").innerHTML = "Submit";
             answered = false;
         }
@@ -33,7 +31,9 @@ $(document).ready(function(){
     });
 });
 
-//process answer submission
+/**
+ * Process answer submission, make visual changes based on result
+ */
 function confirmAnswer(){
     var answer = document.getElementById("inpbox").value.toLowerCase();
     if(answer != ""){
@@ -57,7 +57,11 @@ function confirmAnswer(){
     }
 }
 
-//determine if the user input matches the expected answer
+/**
+ * determine if the user input matches the expected answer
+ * @param {string} answer The user's answer
+ * @returns {boolean} true if correct, false if incorrect
+ */
 function correct(answer){
     if(document.getElementById("english-option-a").checked){
         document.getElementById("correct-answers").innerHTML = capitalize(currentWord.english[0]);
@@ -70,7 +74,12 @@ function correct(answer){
     }
 }
 
-function randomKanaNominal(){
+/**
+ * Resets the app and selects a random word.
+ * Places it in the currentWord and currentWordIndex global variables.
+ * Determines which format of the word to display based on user settings.
+ */
+function randomWord(){
     //reset the app
     document.getElementById("inpbox").value = "";
     document.getElementById("result").innerHTML = "";
@@ -94,6 +103,9 @@ function randomKanaNominal(){
     });
 }
 
+/**
+ * Fills the vocab list table with word data from json files
+ */
 function renderTable(){
     var table = document.getElementById("vocab-list").querySelector("tbody");
     $.getJSON("words.json", function(words){
@@ -142,7 +154,11 @@ function sortTable(table, column, asc = true){
 }
     
 
-//capitalizes first letter of str
+/**
+ * Returns str with the first letter capitalized
+ * @param {string} str The string to process
+ * @returns {string} str with the first letter capitalized
+ */
 function capitalize(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
