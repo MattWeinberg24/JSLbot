@@ -1,19 +1,19 @@
 var currentWord; //holds the current word
 var currentWordIndex; //holds the current word index
 var answered = false; //true when user has answered and is viewing the result, false otherwise
+var usedWords = [];
 
 //runs when website is loaded
 $(document).ready(() => {
     randomWord();
     renderTable();
     $("th").each((i, th) => {
-        th.addEventListener("click", () => {
-            var table = th.parentElement.parentElement.parentElement;
+        $(th).click(() => {
             var isAscending = th.classList.contains("th-sort-asc");
-            sortTable(table, i, !isAscending);
+            sortTable($("#vocab-list").get(0), i, !isAscending);
         });
     });
-    $("input[name='qlang']").change(function(){
+    $("input[name='qlang']").change(() => {
         randomWord();
     });
     $("#inp").submit(e => {
@@ -35,24 +35,18 @@ $(document).ready(() => {
  * Process answer submission, make visual changes based on result
  */
 function confirmAnswer(){
-    var answer = document.getElementById("inpbox").value.toLowerCase();
+    var answer = $("#inpbox").val().toLowerCase();
     if(answer != ""){
         //locate current table row
-        var tableRow;
-        Array.from(document.getElementById("vocab-list").rows).every(row => {
-            if (row.cells[0].innerHTML == currentWord.kanzi){
-                tableRow = row;
-                return false;
-            }
-            return true;
-        });
+        var tr = tableRow($("#vocab-list").get(0), currentWord.kanzi)
+        
         if (correct(answer)){
-            document.getElementById("result").innerHTML = "はい";
-            tableRow.style.backgroundColor = "green";
+            $("#result").html("はい");
+            tr.style.backgroundColor = "green";
         }
         else {
-            document.getElementById("result").innerHTML = "いいえ";
-            tableRow.style.backgroundColor = "red";
+            $("#result").html("いいえ");
+            tr.style.backgroundColor = "red";
         }
     }
 }
@@ -82,8 +76,8 @@ function correct(answer){
 function randomWord(){
     //reset the app
     document.getElementById("inpbox").value = "";
-    document.getElementById("result").innerHTML = "";
-    document.getElementById("correct-answers").innerHTML = "";
+    document.getElementById("result").innerHTML = "<br>";
+    document.getElementById("correct-answers").innerHTML = "<br>";
 
     $.getJSON("words.json", function(words){
         currentWordIndex = Math.floor(Math.random() * words.nominals.length);
@@ -152,7 +146,24 @@ function sortTable(table, column, asc = true){
     header[column].classList.toggle("th-sort-asc",asc);
     header[column].classList.toggle("th-sort-desc",!asc);
 }
-    
+
+/**
+ * Returns the row of the 
+ * @param {HTMLTableElement} table The table to search
+ * @param {string} kanzi The kanzi to search for
+ * @returns {HTMLTableRowElement} The row of the table containing the kanzi
+ */
+function tableRow(table, kanzi){
+    var result;
+    Array.from(table.rows).every(row => {
+        if (row.cells[0].innerHTML == kanzi){
+            result = row;
+            return false;
+        }
+        return true;
+    });
+    return result;
+}
 
 /**
  * Returns str with the first letter capitalized
