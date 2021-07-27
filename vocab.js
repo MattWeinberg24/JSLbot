@@ -1,12 +1,14 @@
 var currentWord; //holds the current word
-var currentWordIndex; //holds the current word index
+var currentWordIndex;
 var answered = false; //true when user has answered and is viewing the result, false otherwise
-var usedWords = [];
+var unusedWordIndices = {
+    nominals: [],
+    verbals: []
+};
 
 //runs when website is loaded
 $(document).ready(() => {
-    randomWord();
-    renderTable();
+    prepareWords();
     $("th").each((i, th) => {
         $(th).click(() => {
             var isAscending = th.classList.contains("th-sort-asc");
@@ -43,6 +45,16 @@ function confirmAnswer(){
         if (correct(answer)){
             $("#result").html("はい");
             tr.style.backgroundColor = "green";
+            switch (currentWordIndex.wordtype) {
+                case "nominal": 
+                    var i = unusedWordIndices.nominals.indexOf(currentWordIndex.i);
+                    unusedWordIndices.nominals.splice(i,1);
+                    break;
+                case "verbal": 
+                    var i = unusedWordIndices.verbals.indexOf(currentWordIndex.i);
+                    unusedWordIndices.verbals.splice(i,1);
+                    break;
+            } 
         }
         else {
             $("#result").html("いいえ");
@@ -70,7 +82,7 @@ function correct(answer){
 
 /**
  * Resets the app and selects a random word.
- * Places it in the currentWord and currentWordIndex global variables.
+ * Places it in the currentWord global variables.
  * Determines which format of the word to display based on user settings.
  */
 function randomWord(){
@@ -78,32 +90,60 @@ function randomWord(){
     document.getElementById("inpbox").value = "";
     document.getElementById("result").innerHTML = "<br>";
     document.getElementById("correct-answers").innerHTML = "<br>";
+    
+    randomWordIndex();
+    
+    if (currentWordIndex.i != undefined){
+        $.getJSON("words.json", function(words){
+            switch (currentWordIndex.wordtype) {
+                case "nominal": currentWord = words.nominals[currentWordIndex.i]; break;
+                case "verbal": currentWord = words.verbals[currentWordIndex.i]; break;
+            } 
+            if(document.getElementById("english-option-q").checked){
+                document.getElementById("word").innerHTML = capitalize(currentWord.english[0]);
+            }
+            else if(document.getElementById("romazi-option-q").checked){
+                document.getElementById("word").innerHTML = currentWord.romazi;
+            }
+            else if(document.getElementById("kana-option-q").checked){
+                document.getElementById("word").innerHTML = currentWord.kana;
+            }
+            else{
+                document.getElementById("word").innerHTML = currentWord.kanzi;
+            }
+        });
+    }
+    // TODO: Implement win screen
+}
 
-    $.getJSON("words.json", function(words){
-        currentWordIndex = Math.floor(Math.random() * words.nominals.length);
-        currentWord = words.nominals[currentWordIndex]; //change num to manually select word
-        if(document.getElementById("english-option-q").checked){
-            document.getElementById("word").innerHTML = capitalize(currentWord.english[0]);
-        }
-        else if(document.getElementById("romazi-option-q").checked){
-            document.getElementById("word").innerHTML = currentWord.romazi;
-        }
-        else if(document.getElementById("kana-option-q").checked){
-            document.getElementById("word").innerHTML = currentWord.kana;
-        }
-        else{
-            document.getElementById("word").innerHTML = currentWord.kanzi;
-        }
-    });
+function randomWordIndex() {
+    var nl = unusedWordIndices.nominals.length;
+    var vl = unusedWordIndices.verbals.length;
+    var n = Math.floor(Math.random() * (nl + vl))
+    var result = {};
+    if (n < nl) {
+        result.i = unusedWordIndices.nominals[n];
+        result.wordtype = "nominal"
+    }
+    else {
+        result.i = unusedWordIndices.verbals[n - nl];
+        result.wordtype = "verbal"
+    }
+    currentWordIndex = result;
 }
 
 /**
- * Fills the vocab list table with word data from json files
+ * Fills the vocab list table with word data from json files.
+ * Fills up unusedWordIndices
  */
-function renderTable(){
+function prepareWords(){
     var table = document.getElementById("vocab-list").querySelector("tbody");
+    var i = 0;
+
     $.getJSON("words.json", function(words){
+
         words.nominals.forEach(function(nominal){
+            unusedWordIndices.nominals.push(i++); //add index to unusedWordIndices
             var row = table.insertRow();
             var cell1 = row.insertCell();
             cell1.innerHTML = nominal.kanzi[0];
@@ -116,6 +156,24 @@ function renderTable(){
             var cell5 = row.insertCell();
             //cell5.innerHTML = nominal.lesson;
         });
+
+        i = 0;
+        words.verbals.forEach(function(verbal){
+            unusedWordIndices.verbals.push(i++); //add index to unusedWordIndices
+            var row = table.insertRow();
+            var cell1 = row.insertCell();
+            cell1.innerHTML = verbal.kanzi[0];
+            var cell2 = row.insertCell();
+            cell2.innerHTML = verbal.kana[0];
+            var cell3 = row.insertCell();
+            cell3.innerHTML = verbal.romazi[0];
+            var cell4 = row.insertCell();
+            cell4.innerHTML = capitalize(verbal.english[0]);
+            var cell5 = row.insertCell();
+            //cell5.innerHTML = nominal.lesson;
+        });
+        randomWord();
+
     });
     
 }
@@ -148,7 +206,7 @@ function sortTable(table, column, asc = true){
 }
 
 /**
- * Returns the row of the 
+ * Returns the row that contains the given kanzi in the table
  * @param {HTMLTableElement} table The table to search
  * @param {string} kanzi The kanzi to search for
  * @returns {HTMLTableRowElement} The row of the table containing the kanzi

@@ -46,9 +46,9 @@
 
 "verbals": [
     {
-        "romazi": "wakaru",
-        "kana": "わかる",
-        "kanzi": "分かる",
+        "romazi": ["wakaru"],
+        "kana": ["わかる"],
+        "kanzi": ["分かる"],
         "english": ["understand"],
         "ru": false,
         "operational": false
