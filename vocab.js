@@ -1,7 +1,11 @@
 var currentWord; //holds the current word
-var currentWordIndex;
+var currentWordIndex = {i: 0, wordtype: ""};
 var answered = false; //true when user has answered and is viewing the result, false otherwise
 var unusedWordIndices = {
+    nominals: [],
+    verbals: []
+};
+var defaultUnusedWordIndices = {
     nominals: [],
     verbals: []
 };
@@ -37,7 +41,7 @@ $(document).ready(() => {
  * Process answer submission, make visual changes based on result
  */
 function confirmAnswer(){
-    var answer = $("#inpbox").val().toLowerCase();
+    var answer = $("#inpbox").val().toLowerCase().trim();
     if(answer != ""){
         //locate current table row
         var tr = tableRow($("#vocab-list").get(0), currentWord.kanzi)
@@ -92,28 +96,30 @@ function randomWord(){
     document.getElementById("correct-answers").innerHTML = "<br>";
     
     randomWordIndex();
-    
-    if (currentWordIndex.i != undefined){
-        $.getJSON("words.json", function(words){
-            switch (currentWordIndex.wordtype) {
-                case "nominal": currentWord = words.nominals[currentWordIndex.i]; break;
-                case "verbal": currentWord = words.verbals[currentWordIndex.i]; break;
-            } 
-            if(document.getElementById("english-option-q").checked){
-                document.getElementById("word").innerHTML = capitalize(currentWord.english[0]);
-            }
-            else if(document.getElementById("romazi-option-q").checked){
-                document.getElementById("word").innerHTML = currentWord.romazi;
-            }
-            else if(document.getElementById("kana-option-q").checked){
-                document.getElementById("word").innerHTML = currentWord.kana;
-            }
-            else{
-                document.getElementById("word").innerHTML = currentWord.kanzi;
-            }
-        });
+
+    if (currentWordIndex.i == undefined){
+        resetApp();
+        randomWordIndex();
     }
-    // TODO: Implement win screen
+    $.getJSON("words.json", function(words){
+        switch (currentWordIndex.wordtype) {
+            case "nominal": currentWord = words.nominals[currentWordIndex.i]; break;
+            case "verbal": currentWord = words.verbals[currentWordIndex.i]; break;
+        } 
+        if(document.getElementById("english-option-q").checked){
+            document.getElementById("word").innerHTML = capitalize(currentWord.english[0]);
+        }
+        else if(document.getElementById("romazi-option-q").checked){
+            document.getElementById("word").innerHTML = currentWord.romazi;
+        }
+        else if(document.getElementById("kana-option-q").checked){
+            document.getElementById("word").innerHTML = currentWord.kana;
+        }
+        else{
+            document.getElementById("word").innerHTML = currentWord.kanzi;
+        }
+    });
+    
 }
 
 function randomWordIndex() {
@@ -143,7 +149,7 @@ function prepareWords(){
     $.getJSON("words.json", function(words){
 
         words.nominals.forEach(function(nominal){
-            unusedWordIndices.nominals.push(i++); //add index to unusedWordIndices
+            defaultUnusedWordIndices.nominals.push(i++); //add index to unusedWordIndices
             var row = table.insertRow();
             var cell1 = row.insertCell();
             cell1.innerHTML = nominal.kanzi[0];
@@ -159,7 +165,7 @@ function prepareWords(){
 
         i = 0;
         words.verbals.forEach(function(verbal){
-            unusedWordIndices.verbals.push(i++); //add index to unusedWordIndices
+            defaultUnusedWordIndices.verbals.push(i++); //add index to unusedWordIndices
             var row = table.insertRow();
             var cell1 = row.insertCell();
             cell1.innerHTML = verbal.kanzi[0];
@@ -172,10 +178,16 @@ function prepareWords(){
             var cell5 = row.insertCell();
             //cell5.innerHTML = nominal.lesson;
         });
+        unusedWordIndices = $.extend(true, {}, defaultUnusedWordIndices);
         randomWord();
 
     });
     
+}
+
+function resetApp(){
+    $("tr").css("background-color", "");
+    unusedWordIndices = $.extend(true, {}, defaultUnusedWordIndices);
 }
 
 /**
