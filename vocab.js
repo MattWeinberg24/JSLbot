@@ -1,24 +1,25 @@
+var words;
 var currentWord; //holds the current word
 var currentWordIndex = {i: 0, wordtype: ""};
 var answered = false; //true when user has answered and is viewing the result, false otherwise
-var unusedWordIndices = {
-    nominals: [],
-    verbals: []
-};
-var defaultUnusedWordIndices = {
-    nominals: [],
-    verbals: []
-};
+var unusedWordIndices = [];
+var defaultUnusedWordIndices = [];
 
 //runs when website is loaded
 $(document).ready(() => {
-    prepareWords();
-    $("th").each((i, th) => {
-        $(th).click(() => {
-            var isAscending = th.classList.contains("th-sort-asc");
-            sortTable($("#vocab-list").get(0), i, !isAscending);
-        });
+    $("#app").hide();
+    var t1 = new Date(); //time of Kuroshiro initialization start
+    initializeKuroshiro().then(() => {
+        var t2 = new Date(); //time of Kuroshiro initialization end
+        console.log("Kuroshiro Initialized in " + ((t2 - t1) / 1000) + " seconds");
+        prepareApp().then(() => {
+            randomWord();
+            console.log("App Prepared in " + ((new Date() - t2) / 1000) + " seconds");
+            $("h1").hide();
+            $("#app").show();
+        }); 
     });
+    
     $("input[name='qlang']").change(() => {
         randomWord();
     });
@@ -30,40 +31,38 @@ $(document).ready(() => {
             answered = false;
         }
         else {
-            confirmAnswer();
-            document.getElementById("continue-button").innerHTML = "Next Word";
-            answered = true;
+            if (confirmAnswer()) {
+                document.getElementById("continue-button").innerHTML = "Next Word";
+                answered = true;
+            }
         }
     });
 });
 
 /**
  * Process answer submission, make visual changes based on result
+ * @returns {boolean} true if user entered anything, false if the input is empty
  */
 function confirmAnswer(){
     var answer = $("#inpbox").val().toLowerCase().trim();
     if(answer != ""){
         //locate current table row
-        var tr = tableRow($("#vocab-list").get(0), currentWord.kanzi)
+        var tr = tableRow($("#vocab-list").get(0), currentWord.japanese[0])
         
         if (correct(answer)){
             $("#result").html("はい");
-            tr.style.backgroundColor = "green";
-            switch (currentWordIndex.wordtype) {
-                case "nominal": 
-                    var i = unusedWordIndices.nominals.indexOf(currentWordIndex.i);
-                    unusedWordIndices.nominals.splice(i,1);
-                    break;
-                case "verbal": 
-                    var i = unusedWordIndices.verbals.indexOf(currentWordIndex.i);
-                    unusedWordIndices.verbals.splice(i,1);
-                    break;
-            } 
+            tr.style.backgroundColor = "green";    
+            var i = unusedWordIndices.indexOf(currentWordIndex);
+            unusedWordIndices.splice(i,1);
         }
         else {
             $("#result").html("いいえ");
             tr.style.backgroundColor = "red";
         }
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
@@ -73,12 +72,13 @@ function confirmAnswer(){
  * @returns {boolean} true if correct, false if incorrect
  */
 function correct(answer){
-    if(document.getElementById("english-option-a").checked){
-        document.getElementById("correct-answers").innerHTML = capitalize(currentWord.english[0]);
+    if($("#english-option-a").is(":checked")){
+        $("#correct-answers").html(capitalize(currentWord.english[0]));
         return currentWord.english.includes(answer);
     }
-    else{                                                                   //eventually may need updating
-        var message = currentWord.romazi + ", " + currentWord.kana + (currentWord.kana.includes(currentWord.kanzi[0]) ? "" : ", " + currentWord.kanzi);
+    else{
+                                                                           //eventually may need updating
+        var message = currentWord.romazi + ", " + currentWord.kana; //+ (currentWord.kana.includes(currentWord.kanzi[0]) ? "" : ", " + currentWord.kanzi);
         document.getElementById("correct-answers").innerHTML = message;
         return answer == currentWord.romazi || answer == currentWord.kana || answer == currentWord.kanzi;
     }
@@ -95,99 +95,81 @@ function randomWord(){
     document.getElementById("result").innerHTML = "<br>";
     document.getElementById("correct-answers").innerHTML = "<br>";
     
-    randomWordIndex();
+    var n = Math.floor(Math.random() * unusedWordIndices.length);
+    currentWordIndex = unusedWordIndices[n];
 
-    if (currentWordIndex.i == undefined){
+    if (currentWordIndex == undefined){
         resetApp();
-        randomWordIndex();
+        var n = Math.floor(Math.random() * unusedWordIndices.length)
+        currentWordIndex = unusedWordIndices[n];
     }
-    $.getJSON("words.json", function(words){
-        switch (currentWordIndex.wordtype) {
-            case "nominal": currentWord = words.nominals[currentWordIndex.i]; break;
-            case "verbal": currentWord = words.verbals[currentWordIndex.i]; break;
-        } 
-        if(document.getElementById("english-option-q").checked){
-            document.getElementById("word").innerHTML = capitalize(currentWord.english[0]);
-        }
-        else if(document.getElementById("romazi-option-q").checked){
-            document.getElementById("word").innerHTML = currentWord.romazi;
-        }
-        else if(document.getElementById("kana-option-q").checked){
-            document.getElementById("word").innerHTML = currentWord.kana;
-        }
-        else{
-            document.getElementById("word").innerHTML = currentWord.kanzi;
-        }
-    });
+
+    currentWord = words[currentWordIndex];
+    
+    if(document.getElementById("english-option-q").checked){
+        $("#word").html(capitalize(currentWord.english[0]));
+    }
+    else if(document.getElementById("romazi-option-q").checked){
+        $("#word").html(currentWord.romazi);
+    }
+    else if(document.getElementById("kana-option-q").checked){
+        $("#word").html(currentWord.kana);
+    }
+    else{
+        $("#word").html(currentWord.japanese[0]);
+    }
+    
     
 }
 
-function randomWordIndex() {
-    var nl = unusedWordIndices.nominals.length;
-    var vl = unusedWordIndices.verbals.length;
-    var n = Math.floor(Math.random() * (nl + vl))
-    var result = {};
-    if (n < nl) {
-        result.i = unusedWordIndices.nominals[n];
-        result.wordtype = "nominal"
-    }
-    else {
-        result.i = unusedWordIndices.verbals[n - nl];
-        result.wordtype = "verbal"
-    }
-    currentWordIndex = result;
-}
 
 /**
  * Fills the vocab list table with word data from json files.
  * Fills up unusedWordIndices
  */
-function prepareWords(){
+async function prepareApp(){
     var table = document.getElementById("vocab-list").querySelector("tbody");
     var i = 0;
+    words = nominals.concat(verbals);
 
-    $.getJSON("words.json", function(words){
+    var promiseArray = [];
 
-        words.nominals.forEach(function(nominal){
-            defaultUnusedWordIndices.nominals.push(i++); //add index to unusedWordIndices
-            var row = table.insertRow();
-            var cell1 = row.insertCell();
-            cell1.innerHTML = nominal.kanzi[0];
-            var cell2 = row.insertCell();
-            cell2.innerHTML = nominal.kana[0];
-            var cell3 = row.insertCell();
-            cell3.innerHTML = nominal.romazi[0];
-            var cell4 = row.insertCell();
-            cell4.innerHTML = capitalize(nominal.english[0]);
-            var cell5 = row.insertCell();
-            //cell5.innerHTML = nominal.lesson;
-        });
-
-        i = 0;
-        words.verbals.forEach(function(verbal){
-            defaultUnusedWordIndices.verbals.push(i++); //add index to unusedWordIndices
-            var row = table.insertRow();
-            var cell1 = row.insertCell();
-            cell1.innerHTML = verbal.kanzi[0];
-            var cell2 = row.insertCell();
-            cell2.innerHTML = verbal.kana[0];
-            var cell3 = row.insertCell();
-            cell3.innerHTML = verbal.romazi[0];
-            var cell4 = row.insertCell();
-            cell4.innerHTML = capitalize(verbal.english[0]);
-            var cell5 = row.insertCell();
-            //cell5.innerHTML = nominal.lesson;
-        });
-        unusedWordIndices = $.extend(true, {}, defaultUnusedWordIndices);
-        randomWord();
-
+    words.forEach(function(word){
+        defaultUnusedWordIndices.push(i++); //add index to unusedWordIndices
+        var row = table.insertRow();
+        var cell1 = row.insertCell();
+        cell1.innerHTML = word.english[0];
+        var cell2 = row.insertCell();
+        promiseArray.push(kuroshiro.convert(word.japanese[0], {to: "romaji", romajiSystem: "nippon"}).then(result => {
+            cell2.innerHTML = nipponToJSL(result);
+            word.romazi = nipponToJSL(result);
+        }));
+        var cell3 = row.insertCell();
+        promiseArray.push(kuroshiro.convert(word.japanese[0], {to: "hiragana"}).then(result => {
+            cell3.innerHTML = result;
+            word.kana = result;
+        }));
+        var cell4 = row.insertCell();
+        cell4.innerHTML = capitalize(word.japanese[0]);
+        var cell5 = row.insertCell();
+        //cell5.innerHTML = nominal.lesson;
     });
-    
+
+    unusedWordIndices = $.extend(true, [], defaultUnusedWordIndices);
+
+    $("th").each((i, th) => {
+        $(th).click(() => {
+            var isAscending = th.classList.contains("th-sort-asc");
+            sortTable($("#vocab-list").get(0), i, !isAscending);
+        });
+    });
+
+    return Promise.all(promiseArray);
 }
 
 function resetApp(){
     $("tr").css("background-color", "");
-    unusedWordIndices = $.extend(true, {}, defaultUnusedWordIndices);
+    unusedWordIndices = $.extend(true, [], defaultUnusedWordIndices);
 }
 
 /**
@@ -226,7 +208,7 @@ function sortTable(table, column, asc = true){
 function tableRow(table, kanzi){
     var result;
     Array.from(table.rows).every(row => {
-        if (row.cells[0].innerHTML == kanzi){
+        if (row.cells[3].innerHTML == kanzi){
             result = row;
             return false;
         }

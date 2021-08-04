@@ -7,12 +7,15 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="verbal.js"></script>
+    <script src="https://unpkg.com/kuroshiro-analyzer-kuromoji@1.1.0/dist/kuroshiro-analyzer-kuromoji.min.js"></script>
+    <script src="https://unpkg.com/kuroshiro@1.1.2/dist/kuroshiro.min.js"></script>
+    <script src="words.js"></script>
+    <script src="jsl.js"></script>
     <script src="vocab.js"></script>
     <title>JSLBot</title>
 </head>
 <body>
-
+    <h1>Loading Dictionary Files...</h1>
     <div id="app">
         <h2 id="word"></h2>
         <form id="inp" autocomplete="off">
@@ -30,7 +33,7 @@
         <input type="radio" name="qlang" id="romazi-option-q">
         <label for="romazi-option-q">Romazi (JSL)</label>
         <input type="radio" name="qlang" id="kana-option-q">
-        <label for="kana-option-q">Hiragana/Katakana</label>
+        <label for="kana-option-q">Kana</label>
         <input type="radio" name="qlang" id="kanzi-option-q">
         <label for="kanzi-option-q">Kanzi</label>
 
@@ -44,10 +47,10 @@
     <table id="vocab-list">
         <thead>
             <tr>
-                <th>Kanzi</th>
-                <th>Kana</th>
-                <th>Romazi</th>
                 <th>English</th>
+                <th>Romazi</th>
+                <th>Kana</th>
+                <th>Kanzi</th>
                 <th>Lesson</th>
             </tr>
         </thead>
