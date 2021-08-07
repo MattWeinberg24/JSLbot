@@ -127,32 +127,43 @@ function randomWord(){
  * Fills the vocab list table with word data from json files.
  * Fills up unusedWordIndices
  */
-async function prepareApp(){
+function prepareApp(){
     var table = document.getElementById("vocab-list").querySelector("tbody");
     var i = 0;
-    words = nominals.concat(verbals);
+    words = nominals.concat(verbals, adjectivals);
 
     var promiseArray = [];
 
     words.forEach(function(word){
         defaultUnusedWordIndices.push(i++); //add index to unusedWordIndices
         var row = table.insertRow();
+
         var cell1 = row.insertCell();
         cell1.innerHTML = word.english[0];
+
         var cell2 = row.insertCell();
-        promiseArray.push(kuroshiro.convert(word.japanese[0], {to: "romaji", romajiSystem: "nippon"}).then(result => {
-            cell2.innerHTML = nipponToJSL(result);
-            word.romazi = nipponToJSL(result);
-        }));
         var cell3 = row.insertCell();
-        promiseArray.push(kuroshiro.convert(word.japanese[0], {to: "hiragana"}).then(result => {
-            cell3.innerHTML = result;
-            word.kana = result;
-        }));
+        if (word.hasOwnProperty("kana")){ //if kana is overridden in words.js
+            word.romazi = Kuroshiro.Util.kanaToRomaji(word.kana,"nippon");
+            cell2.innerHTML = word.romazi;
+            cell3.innerHTML = word.kana;
+        }
+        else {
+            promiseArray.push(kuroshiro.convert(word.japanese[0], {to: "romaji", romajiSystem: "nippon"}).then(result => {
+                cell2.innerHTML = nipponToJSL(result);
+                word.romazi = nipponToJSL(result);
+            }));
+            promiseArray.push(kuroshiro.convert(word.japanese[0], {to: "hiragana"}).then(result => {
+                cell3.innerHTML = result;
+                word.kana = result;
+            }));
+        }
+
         var cell4 = row.insertCell();
         cell4.innerHTML = capitalize(word.japanese[0]);
+        
         var cell5 = row.insertCell();
-        //cell5.innerHTML = nominal.lesson;
+        cell5.innerHTML = word.lesson;
     });
 
     unusedWordIndices = $.extend(true, [], defaultUnusedWordIndices);
@@ -188,7 +199,20 @@ function sortTable(table, column, asc = true){
     var sortedRows = rows.sort(function(a,b){
         var aColText = a.cells[column].innerHTML;
         var bColText = b.cells[column].innerHTML;
-        return aColText > bColText ? (1*dirModifier) : (-1*dirModifier);
+        if (column == 4){
+            var aSplit = aColText.split(/(\d+)/); //splits between letters and numbers
+            var bSplit = bColText.split(/(\d+)/);
+            console.log(aSplit);
+            if (aSplit[1] == bSplit[1]){
+                return aSplit[2] > bSplit[2] ? (1*dirModifier) : (-1*dirModifier);
+            }
+            else {
+                return Number(aSplit[1]) > Number(bSplit[1]) ? (1*dirModifier) : (-1*dirModifier);
+            }
+        }
+        else {
+            return aColText > bColText ? (1*dirModifier) : (-1*dirModifier);
+        }
     });
     while(tBody.firstChild){
         tBody.removeChild(tBody.firstChild);
