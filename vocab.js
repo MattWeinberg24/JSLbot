@@ -124,13 +124,15 @@ function randomWord(){
 
 
 /**
- * Fills the vocab list table with word data from json files.
+ * Translates each word into kana and romazi using Kuroshiro
+ * Fills the vocab list table
  * Fills up unusedWordIndices
+ * @returns {Promise} All of Kuroshiro's convert() promises
  */
 function prepareApp(){
     var table = document.getElementById("vocab-list").querySelector("tbody");
     var i = 0;
-    words = nominals.concat(verbals, adjectivals);
+    words = nominals.concat(verbals, adjectivals, modifiers);
 
     var promiseArray = [];
 
@@ -178,6 +180,9 @@ function prepareApp(){
     return Promise.all(promiseArray);
 }
 
+/**
+ * Resets the table and unusedWordIndices
+ */
 function resetApp(){
     $("tr").css("background-color", "");
     unusedWordIndices = $.extend(true, [], defaultUnusedWordIndices);
@@ -199,7 +204,7 @@ function sortTable(table, column, asc = true){
     var sortedRows = rows.sort(function(a,b){
         var aColText = a.cells[column].innerHTML;
         var bColText = b.cells[column].innerHTML;
-        if (column == 4){
+        if (column == 4){ //if sorting by lesson
             var aSplit = aColText.split(/(\d+)/); //splits between letters and numbers
             var bSplit = bColText.split(/(\d+)/);
             console.log(aSplit);
