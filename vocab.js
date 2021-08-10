@@ -132,7 +132,7 @@ function randomWord(){
 function prepareApp(){
     var table = document.getElementById("vocab-list").querySelector("tbody");
     var i = 0;
-    words = nominals.concat(verbals, adjectivals, modifiers);
+    words = nominals.concat(verbals, adjectivals, modifiers, greetings);
 
     var promiseArray = [];
 

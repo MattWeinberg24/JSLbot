@@ -1,4 +1,4 @@
-nominals = [
+var nominals = [
     {
         "japanese": ["アイスクリーム"],
         "english": ["icecream","ice cream"],
@@ -82,27 +82,84 @@ nominals = [
         "politeness": "neutral"
     },
     {
-        "japanese": ["あまり","あんまり"],
-        "english": ["not much","not very"],
+        "japanese": ["これ"],
+        "english": ["this one"],
         "category": "happening",
         "lesson": "4A"
-    }
-
-]
-    
-verbals = [
+    },
     {
-        "japanese": ["分かる"],
-        "english": ["understand"],
-        "ru": false,
-        "operational": false,
-        "lesson": "1A" 
-    }
+        "japanese": ["それ"],
+        "english": ["that","it"],
+        "category": "item",
+        "lesson": "4A"
+    },
+    {
+        "japanese": ["あれ"],
+        "english": ["that thing"],
+        "category": "item",
+        "lesson": "4A"
+    },
+    {
+        "japanese": ["どれ"],
+        "english": ["which one"],
+        "category": "item",
+        "question": true,
+        "lesson": "4A"
+    },
+    {
+        "japanese": ["アルバイト"],
+        "english": ["part-time job","part-time worker"],
+        "category": "item",
+        "lesson": "10A"
+    },
+    {
+        "japanese": ["朝"],
+        "english": ["morning"],
+        "category": "time",
+        "lesson": "8B"
+    },
+    {
+        "japanese": ["明後日"],
+        "english": ["day after tomorrow"],
+        "category": "time",
+        "lesson": "3B"
+    },
+    {
+        "japanese": ["明日"],
+        "english": ["tomorrow"],
+        "category": "time",
+        "lesson": "1A"
+    },
+    {
+        "japanese": ["ここ"],
+        "english": ["here"],
+        "category": "place",
+        "lesson": "6B"
+    },
+    {
+        "japanese": ["そこ"],
+        "english": ["there"],
+        "category": "place",
+        "lesson": "6B"
+    },
+    {
+        "japanese": ["あそこ"],
+        "english": ["there"],
+        "category": "place",
+        "lesson": "6B"
+    },
+    {
+        "japanese": ["どこ"],
+        "english": ["where"],
+        "category": "place",
+        "question": true,
+        "lesson": "6B"
+    },
     
     
 ]
     
-adjectivals = [
+var adjectivals = [
     {
         "japanese": ["危ない"],
         "english": ["dangerous"],
@@ -112,13 +169,18 @@ adjectivals = [
         "japanese": ["赤い"],
         "english": ["red"],
         "lesson": "4A"
+    },
+    {
+        "japanese": ["青い"],
+        "english": ["blue"],
+        "lesson": "4A"
     }
     
     
 
 ]
 
-modifiers = [
+var modifiers = [
     {
         "japanese": ["生憎"],
         "english": ["unfortunately"],
@@ -142,6 +204,22 @@ modifiers = [
     {
         "japanese": ["どんな"],
         "english": ["what kind of"],
+        "question": true,
         "lesson": "4B"
+    },
+    {
+        "japanese": ["あまり","あんまり"],
+        "english": ["not much","not very"],
+        "lesson": "4A"
     }
+]
+
+var greetings = [
+    {
+        "japanese": ["ありがとう","ありがとうございます","ありがとうございました"],
+        "english": ["thanks","thank you"],
+        "lesson": "0A"
+    }
+
+
 ]
