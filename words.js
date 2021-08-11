@@ -37,7 +37,7 @@ var nominals = [
     },
     {
         "japanese": ["間"],
-        "kana": "あいだ",
+        "kana": ["あいだ"],
         "english": ["between", "in between", "interval"],
         "category": "relative location",
         "lesson": "6A"
@@ -126,6 +126,7 @@ var nominals = [
     },
     {
         "japanese": ["明日"],
+        "kana": ["あした","あす"],
         "english": ["tomorrow"],
         "category": "time",
         "lesson": "1A"
@@ -143,7 +144,7 @@ var nominals = [
         "lesson": "6B"
     },
     {
-        "japanese": ["あそこ"],
+        "japanese": ["あそこ","あすこ"],
         "english": ["there"],
         "category": "place",
         "lesson": "6B"
@@ -180,16 +181,36 @@ var adjectivals = [
 
 ]
 
+var verbals = [
+    {
+        "japanese": ["分かる"],
+        "english": ["understand"],
+        "ru": false,
+        "operational": false,
+        "lesson": "1A" 
+    },
+    {
+        "japanese": ["ある"],
+        "english": ["have","be located"],
+        "ru": false,
+        "operational": false,
+        "lesson": "4A" 
+    },
+    {
+        "japanese": ["歩く"],
+        "english": ["walk"],
+        "ru": false,
+        "operational": true,
+        "lesson": "7B" 
+    },
+
+]
+
 var modifiers = [
     {
         "japanese": ["生憎"],
         "english": ["unfortunately"],
         "lesson": "12A"
-    },
-    {
-        "japanese": ["あんな"],
-        "english": ["that kind of"],
-        "lesson": "4B"
     },
     {
         "japanese": ["こんな"],
@@ -198,6 +219,11 @@ var modifiers = [
     },
     {
         "japanese": ["そんな"],
+        "english": ["that kind of"],
+        "lesson": "4B"
+    },
+    {
+        "japanese": ["あんな"],
         "english": ["that kind of"],
         "lesson": "4B"
     },
@@ -216,7 +242,7 @@ var modifiers = [
 
 var greetings = [
     {
-        "japanese": ["ありがとう","ありがとうございます","ありがとうございました"],
+        "japanese": ["ありがとう","ありがとう ございます","ありがとう ございました"],
         "english": ["thanks","thank you"],
         "lesson": "0A"
     }

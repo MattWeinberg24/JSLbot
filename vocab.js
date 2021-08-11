@@ -146,23 +146,32 @@ function prepareApp(){
         var cell2 = row.insertCell();
         var cell3 = row.insertCell();
         if (word.hasOwnProperty("kana")){ //if kana is overridden in words.js
-            word.romazi = Kuroshiro.Util.kanaToRomaji(word.kana,"nippon");
-            cell2.innerHTML = word.romazi;
-            cell3.innerHTML = word.kana;
+            word.romazi = [];
+            word.kana.forEach((k,i) => {
+                word.romazi.push(nipponToJSL(Kuroshiro.Util.kanaToRomaji(k,"nippon")));
+                cell2.innerHTML += word.romazi[i];
+                cell3.innerHTML += word.kana[i];
+            })  
         }
         else {
-            promiseArray.push(kuroshiro.convert(word.japanese[0], {to: "romaji", romajiSystem: "nippon"}).then(result => {
-                cell2.innerHTML = nipponToJSL(result);
-                word.romazi = nipponToJSL(result);
-            }));
-            promiseArray.push(kuroshiro.convert(word.japanese[0], {to: "hiragana"}).then(result => {
-                cell3.innerHTML = result;
-                word.kana = result;
-            }));
+            word.kana = [];
+            word.romazi = [];
+            word.japanese.forEach((j,i) => {
+                promiseArray.push(kuroshiro.convert(j, {to: "hiragana"}).then(k => {
+                    word.romazi.push(nipponToJSL(Kuroshiro.Util.kanaToRomaji(k,"nippon")));
+                    word.kana.push(k);
+                    cell2.innerHTML += i > 0 ? "<br>" + word.romazi[i] : word.romazi[i];
+                    cell3.innerHTML += i > 0 ? "<br>" + word.kana[i] : word.kana[i];
+                }));
+            })
         }
-
-        var cell4 = row.insertCell();
-        cell4.innerHTML = capitalize(word.japanese[0]);
+        if (Kuroshiro.Util.hasKanji(word.japanese[0])){
+            var cell4 = row.insertCell();
+            cell4.innerHTML = capitalize(word.japanese[0]);
+        }
+        else {
+            cell3.colSpan = 2;
+        }
         
         var cell5 = row.insertCell();
         cell5.innerHTML = word.lesson;
@@ -189,8 +198,8 @@ function resetApp(){
 }
 
 /**
- * Sorts an HTML table
- * (Adapted from dcode's YouTube tutorial)
+ * Sorts the vocab table specifically
+ * (Adapted from dcode's YouTube tutorial on sorting general HTML tables)
  * 
  * @param {HTMLTableElement} table The Table to sort
  * @param {number} column The index of the column to sort
@@ -202,12 +211,24 @@ function sortTable(table, column, asc = true){
     var dirModifier = asc ? 1 : -1;
     var rows = Array.from(tBody.rows);
     var sortedRows = rows.sort(function(a,b){
-        var aColText = a.cells[column].innerHTML;
-        var bColText = b.cells[column].innerHTML;
+        var aColText, bColText;
         if (column == 4){ //if sorting by lesson
+            if (a.cells.length == 4) { //if kana and kanzi merged
+                aColText = a.cells[column - 1].innerHTML;
+            }
+            else {
+                aColText = a.cells[column].innerHTML;
+            }
+            
+            if (b.cells.length == 4) { //if kana and kanzi merged
+                bColText = b.cells[column - 1].innerHTML;
+            }
+            else {
+                bColText = b.cells[column].innerHTML;
+            }
+
             var aSplit = aColText.split(/(\d+)/); //splits between letters and numbers
             var bSplit = bColText.split(/(\d+)/);
-            console.log(aSplit);
             if (aSplit[1] == bSplit[1]){
                 return aSplit[2] > bSplit[2] ? (1*dirModifier) : (-1*dirModifier);
             }
@@ -215,9 +236,27 @@ function sortTable(table, column, asc = true){
                 return Number(aSplit[1]) > Number(bSplit[1]) ? (1*dirModifier) : (-1*dirModifier);
             }
         }
-        else {
-            return aColText > bColText ? (1*dirModifier) : (-1*dirModifier);
+        else if (column == 3) {
+            if (Kuroshiro.Util.hasJapanese(a.cells[column].innerHTML)) { //if kana and kanzi did not merge
+                aColText = a.cells[column].innerHTML;
+            }
+            else {
+                aColText = a.cells[column - 1].innerHTML;
+            }
+            
+            if (Kuroshiro.Util.hasJapanese(b.cells[column].innerHTML)) { //if kana and kanzi did not merge
+                bColText = b.cells[column].innerHTML;
+            }
+            else {
+                bColText = b.cells[column - 1].innerHTML;
+            }
         }
+        else {
+            aColText = a.cells[column].innerHTML;
+            bColText = b.cells[column].innerHTML;
+        }
+        return aColText > bColText ? (1*dirModifier) : (-1*dirModifier);
+        
     });
     while(tBody.firstChild){
         tBody.removeChild(tBody.firstChild);
