@@ -1,9 +1,9 @@
-var words;
+var words; //holds all the current eligible words to be quizzed
 var currentWord; //holds the current word
-var currentWordIndex = {i: 0, wordtype: ""};
+var currentWordIndex; //holds the current word index (of the words list)
 var answered = false; //true when user has answered and is viewing the result, false otherwise
-var unusedWordIndices = [];
-var defaultUnusedWordIndices = [];
+var unusedWordIndices = []; //holds all indices of the words list that have not been answered correctly yet
+var defaultUnusedWordIndices = []; //holds the initial state of unusedWordIndices to simplify resetting
 
 //runs when website is loaded
 $(document).ready(() => {
@@ -47,7 +47,7 @@ function confirmAnswer(){
     var answer = $("#inpbox").val().toLowerCase().trim();
     if(answer != ""){
         //locate current table row
-        var tr = tableRow($("#vocab-list").get(0), currentWord.japanese[0])
+        var tr = tableRow($("#vocab-list").get(0), currentWord.english[0])
         
         if (correct(answer)){
             $("#result").html("はい");
@@ -72,15 +72,22 @@ function confirmAnswer(){
  * @returns {boolean} true if correct, false if incorrect
  */
 function correct(answer){
+    var message = "";
     if($("#english-option-a").is(":checked")){
-        $("#correct-answers").html(capitalize(currentWord.english[0]));
+        
+        currentWord.english.forEach(word => message += word + ", ");
+        message = message.substring(0, message.length - 2); //remove last ", "
+        $("#correct-answers").html(message);
         return currentWord.english.includes(answer);
     }
     else{
-                                                                           //eventually may need updating
-        var message = currentWord.romazi + ", " + currentWord.kana; //+ (currentWord.kana.includes(currentWord.kanzi[0]) ? "" : ", " + currentWord.kanzi);
-        document.getElementById("correct-answers").innerHTML = message;
-        return answer == currentWord.romazi || answer == currentWord.kana || answer == currentWord.kanzi;
+        currentWord.romazi.concat(currentWord.kana).forEach(word => message += word + ", ");
+        if (Kuroshiro.Util.hasKanji(currentWord.japanese[0])){ //only display the kanzi if they are unique from the kana entries
+            currentWord.japanese.forEach(word => message += word + ", ");
+        }
+        message = message.substring(0, message.length - 2); //remove last ", "
+        $("#correct-answers").html(message);
+        return currentWord.romazi.includes(answer) || currentWord.kana.includes(answer) || currentWord.japanese.includes(answer);
     }
 }
 
@@ -90,7 +97,7 @@ function correct(answer){
  * Determines which format of the word to display based on user settings.
  */
 function randomWord(){
-    //reset the app
+    //reset the display
     document.getElementById("inpbox").value = "";
     document.getElementById("result").innerHTML = "<br>";
     document.getElementById("correct-answers").innerHTML = "<br>";
@@ -107,7 +114,7 @@ function randomWord(){
     currentWord = words[currentWordIndex];
     
     if(document.getElementById("english-option-q").checked){
-        $("#word").html(capitalize(currentWord.english[0]));
+        $("#word").html(currentWord.english[0]);
     }
     else if(document.getElementById("romazi-option-q").checked){
         $("#word").html(currentWord.romazi);
@@ -149,8 +156,8 @@ function prepareApp(){
             word.romazi = [];
             word.kana.forEach((k,i) => {
                 word.romazi.push(nipponToJSL(Kuroshiro.Util.kanaToRomaji(k,"nippon")));
-                cell2.innerHTML += word.romazi[i];
-                cell3.innerHTML += word.kana[i];
+                cell2.innerHTML += i > 0 ? "<br>" + word.romazi[i] : word.romazi[i];
+                cell3.innerHTML += i > 0 ? "<br>" + word.kana[i] : word.kana[i];
             })  
         }
         else {
@@ -167,7 +174,7 @@ function prepareApp(){
         }
         if (Kuroshiro.Util.hasKanji(word.japanese[0])){
             var cell4 = row.insertCell();
-            cell4.innerHTML = capitalize(word.japanese[0]);
+            cell4.innerHTML = word.japanese[0];
         }
         else {
             cell3.colSpan = 2;
@@ -201,7 +208,7 @@ function resetApp(){
  * Sorts the vocab table specifically
  * (Adapted from dcode's YouTube tutorial on sorting general HTML tables)
  * 
- * @param {HTMLTableElement} table The Table to sort
+ * @param {HTMLTableElement} table The table to sort
  * @param {number} column The index of the column to sort
  * @param {boolean} asc True if the sorting will be ascending
  */
@@ -229,10 +236,10 @@ function sortTable(table, column, asc = true){
 
             var aSplit = aColText.split(/(\d+)/); //splits between letters and numbers
             var bSplit = bColText.split(/(\d+)/);
-            if (aSplit[1] == bSplit[1]){
+            if (aSplit[1] == bSplit[1]){ //if both rows have the same number lesson, sort by letter
                 return aSplit[2] > bSplit[2] ? (1*dirModifier) : (-1*dirModifier);
             }
-            else {
+            else { //otherwise sort by number
                 return Number(aSplit[1]) > Number(bSplit[1]) ? (1*dirModifier) : (-1*dirModifier);
             }
         }
@@ -268,28 +275,19 @@ function sortTable(table, column, asc = true){
 }
 
 /**
- * Returns the row that contains the given kanzi in the table
+ * Returns the row that contains the given english in the table
  * @param {HTMLTableElement} table The table to search
- * @param {string} kanzi The kanzi to search for
- * @returns {HTMLTableRowElement} The row of the table containing the kanzi
+ * @param {string} english The english to search for
+ * @returns {HTMLTableRowElement} The row of the table containing the english
  */
-function tableRow(table, kanzi){
+function tableRow(table, english){
     var result;
     Array.from(table.rows).every(row => {
-        if (row.cells[3].innerHTML == kanzi){
+        if (row.cells[0].innerHTML.includes(english)){
             result = row;
             return false;
         }
         return true;
     });
     return result;
-}
-
-/**
- * Returns str with the first letter capitalized
- * @param {string} str The string to process
- * @returns {string} str with the first letter capitalized
- */
-function capitalize(str){
-    return str.charAt(0).toUpperCase() + str.slice(1);
 }

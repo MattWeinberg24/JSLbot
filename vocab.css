@@ -28,6 +28,14 @@ th {
     content: "\25be";
 }
 
+
+#options {
+    display: flex;
+    flex-wrap: wrap;
+}
+#options div {
+    margin-right: 100px;
+}
 input[type=radio] {
     margin-top: -1px;
     width: 30px;

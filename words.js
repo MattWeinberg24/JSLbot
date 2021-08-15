@@ -1,3 +1,19 @@
+/* Key
+japanese: the kanzi (kanji) form of the word (or just kana if the word is rarely used with kanzi)
+kana (override): overrides Kuroshiro translations from kanzi if it gets it wrong
+english: the english translation
+category (nominals): roughly what connotation the word is used for
+lesson: the JSL lesson the word is first introduced in
+politeness: the politeness of the word.
+            honorific: used to address superiors
+            humble: used to address in-group to superiors
+            neutral: general-purpose
+            rude: don't use this word
+question: true if the word is a "question word" like "dore", "doko", "nani", etc.
+ru (verbals): true if the verbal is a "ru verbal" (JSL Terminology)
+operational (verbals): true if the verbal is operational, false if affective (JSL Terminology)
+*/
+
 var nominals = [
     {
         "japanese": ["アイスクリーム"],
@@ -120,6 +136,7 @@ var nominals = [
     },
     {
         "japanese": ["明後日"],
+        "kana": ["あさって"],
         "english": ["day after tomorrow"],
         "category": "time",
         "lesson": "3B"
