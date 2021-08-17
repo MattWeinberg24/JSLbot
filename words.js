@@ -173,7 +173,85 @@ var nominals = [
         "question": true,
         "lesson": "6B"
     },
-    
+    {
+        "japanese": ["こちら", "こっち"],
+        "english": ["this side", "this way"],
+        "category": "place",
+        "lesson": "6A"
+    },
+    {
+        "japanese": ["そちら", "そっち"],
+        "english": ["that side", "that way"],
+        "category": "place",
+        "lesson": "6A"
+    },
+    {
+        "japanese": ["あちら", "あっち"],
+        "english": ["that side", "that way"],
+        "category": "place",
+        "lesson": "6A",
+    },
+    {
+        "japanese": ["どちら", "どっち"],
+        "english": ["which side", "which way"],
+        "category": "place",
+        "lesson": "6A",
+        "question": true
+    },
+    {
+        "japanese": ["後"],
+        "english": ["later", "remaining"],
+        "category": "time",
+        "lesson": "8A"
+    },
+    {
+        "japanese": ["売店"],
+        "english": ["kiosk", "stand"],
+        "category": "place",
+        "lesson": "6A"
+    },
+    {
+        "japanese": ["晩"],
+        "english": ["night"],
+        "category": "time",
+        "lesson": "8B"
+    },
+    {
+        "japanese": ["番号"],
+        "english": ["assigned number"],
+        "category": "item",
+        "lesson": "12A"
+    },
+    {
+        "japanese": ["バス"],
+        "english": ["bus"],
+        "category": "item",
+        "lesson": "7B"
+    },
+    {
+        "japanese": ["勉強"],
+        "english": ["study"],
+        "category": "happening",
+        "lesson": "9B"
+    },
+    {
+        "japanese": ["ビール"],
+        "english": ["beer"],
+        "category": "drink",
+        "lesson": "5B"
+    },
+    {
+        "japanese": ["便箋"],
+        "english": ["stationery"],
+        "category": "item",
+        "lesson": "4B"
+    },
+    {
+        "japanese": ["ビル"],
+        "english": ["building"],
+        "category": "item",
+        "lesson": "6A"
+    }
     
 ]
     
@@ -219,7 +297,7 @@ var verbals = [
         "ru": false,
         "operational": true,
         "lesson": "7B" 
-    },
+    }
 
 ]
 
