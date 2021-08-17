@@ -1,23 +1,27 @@
 import os
 
 path = "newwords.txt" # path of the textfile
-categories = [("\"japanese\"", True),("\"english\"", True),("\"category\"", False), ("\"lesson\"", False), ("\"politeness", False), ("\"question\"", False)] # required json properties
-optional_categories = ["\"politeness","\"question\""] # optional json properties
+categories = [("\"japanese\"", True),("\"english\"", True),("\"category\"", False), ("\"lesson\"", False), ("\"politeness", False), ("\"question\"", False)] # required json properties. second value determines if list or not.
 
 with open(path, 'w', encoding='utf8') as f:
     nextword = True
     while nextword:
         f.write("{")
-        for c in categories:
+        for i,c in enumerate(categories):
             s = input(c[0] + ": ").strip()
-            if (s != ""):
-                l = s.split(",")
-                p = ""
-                for word in l:
-                    p += "\"" + word.strip() + "\", "
-                p = p.strip(", ")
-                if (c[1]):
-                    p = "[" + p + "]"
+            if (s != ""): # only add json if something was inputted
+                if (i > 0): # don't add comma before the first property
+                    f.write(",")
+                if (s != "true"): # only add quotes around values if not supposed to be boolean true
+                    l = s.split(",")
+                    p = ""
+                    for word in l:
+                        p += "\"" + word.strip() + "\", "
+                    p = p.strip(", ")
+                    if (c[1]): 
+                        p = "[" + p + "]"
+                else:
+                    p = s
                 f.write("\n\t" + c[0] + ": " + p)
         f.write("\n},\n")
         nextword = input() == ""
