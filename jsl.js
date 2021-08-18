@@ -15,7 +15,8 @@ function initializeKuroshiro() {
  * @returns {string} The resulting JSL romazi
  */
 function nipponToJSL(nippon) {
-    return nippon.replace("î","ii").replace("ô","oo"); 
+    console.log(nippon);
+    return nippon.replace("î","ii").replace("ô","oo").replace("ou","oo"); 
 }
 
 /**
