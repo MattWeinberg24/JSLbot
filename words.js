@@ -251,6 +251,70 @@ var nominals = [
         "english": ["building"],
         "category": "item",
         "lesson": "6A"
+    },
+    {
+        "japanese": ["僕"],
+        "english": ["I", "me"],
+        "category": "person",
+        "lesson": "2B"
+    },
+    {
+        "japanese": ["貿易"],
+        "english": ["foreign trade"],
+        "category": "happening",
+        "lesson": "10A"
+    },
+    {
+        "japanese": ["ボールペン"],
+        "english": ["ballpoint pen"],
+        "category": "item",
+        "lesson": "4B"
+    },
+    {
+        "japanese": ["坊ちゃん"],
+        "english": ["son"],
+        "category": "person",
+        "lesson": "10A",
+        "politeness": "honorific"
+    },
+    {
+        "japanese": ["文房具"],
+        "english": ["stationery"],
+        "category": "item",
+        "lesson": "7A"
+    },
+    {
+        "japanese": ["病院"],
+        "english": ["hospital"],
+        "category": "place",
+        "lesson": "6B"
+    },
+    {
+        "japanese": ["病気"],
+        "english": ["illness", "sickness"],
+        "category": "happening",
+        "lesson": "9B"
+    },
+    {
+        "japanese": ["大学"],
+        "english": ["university", "college"],
+        "category": "place",
+        "lesson": "7A"
+    },
+    {
+        "japanese": ["誰"],
+        "english": ["who"],
+        "category": "person",
+        "lesson": "2B",
+        "politeness": "neutral",
+        "question": true
+    },
+    {
+        "japanese": ["出口"],
+        "kana": ["でぐち"],
+        "english": ["exit"],
+        "category": "place",
+        "lesson": "6A"
     }
     
 ]
