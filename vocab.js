@@ -87,7 +87,14 @@ function correct(answer){
         }
         message = message.substring(0, message.length - 2); //remove last ", "
         $("#correct-answers").html(message);
-        return currentWord.romazi.includes(answer) || currentWord.kana.includes(answer) || currentWord.japanese.includes(answer);
+
+        var possibleAnswers = currentWord.romazi.concat(currentWord.kana, currentWord.japanese);
+        possibleAnswers.forEach((w,i) => {
+            if (w.includes("↓") || w.includes("↑")){
+                possibleAnswers[i] = w.substring(0, w.length - 1);
+            }
+        })
+        return possibleAnswers.includes(answer);
     }
 }
 
@@ -114,16 +121,16 @@ function randomWord(){
     currentWord = words[currentWordIndex];
     
     if(document.getElementById("english-option-q").checked){
-        $("#word").html(currentWord.english[0]);
+        $("#word").html(currentWord.english.join(", "));
     }
     else if(document.getElementById("romazi-option-q").checked){
-        $("#word").html(currentWord.romazi);
+        $("#word").html(currentWord.romazi.join(", "));
     }
     else if(document.getElementById("kana-option-q").checked){
-        $("#word").html(currentWord.kana);
+        $("#word").html(currentWord.kana.join(", "));
     }
     else{
-        $("#word").html(currentWord.japanese[0]);
+        $("#word").html(currentWord.japanese.join(", "));
     }
     
     
@@ -143,22 +150,16 @@ function prepareApp(){
 
     var promiseArray = [];
 
-    words.forEach(function(word){
+    words.forEach(word => {
         defaultUnusedWordIndices.push(i++); //add index to unusedWordIndices
         var row = table.insertRow();
 
-        var cell1 = row.insertCell();
-        cell1.innerHTML = word.english[0];
-
-        var cell2 = row.insertCell();
-        var cell3 = row.insertCell();
         if (word.hasOwnProperty("kana")){ //if kana is overridden in words.js
             word.romazi = [];
-            word.kana.forEach((k,i) => {
+            word.kana.forEach(k => {
                 word.romazi.push(nipponToJSL(Kuroshiro.Util.kanaToRomaji(k,"nippon")));
-                cell2.innerHTML += i > 0 ? "<br>" + word.romazi[i] : word.romazi[i];
-                cell3.innerHTML += i > 0 ? "<br>" + word.kana[i] : word.kana[i];
-            })  
+            });
+            fillRow(row,word);
         }
         else {
             word.kana = [];
@@ -167,21 +168,12 @@ function prepareApp(){
                 promiseArray.push(kuroshiro.convert(j, {to: "hiragana"}).then(k => {
                     word.romazi.push(nipponToJSL(Kuroshiro.Util.kanaToRomaji(k,"nippon")));
                     word.kana.push(k);
-                    cell2.innerHTML += i > 0 ? "<br>" + word.romazi[i] : word.romazi[i];
-                    cell3.innerHTML += i > 0 ? "<br>" + word.kana[i] : word.kana[i];
+                    if (i == word.japanese.length - 1){
+                        fillRow(row,word);
+                    }
                 }));
             })
         }
-        if (Kuroshiro.Util.hasKanji(word.japanese[0])){
-            var cell4 = row.insertCell();
-            cell4.innerHTML = word.japanese[0];
-        }
-        else {
-            cell3.colSpan = 2;
-        }
-        
-        var cell5 = row.insertCell();
-        cell5.innerHTML = word.lesson;
     });
 
     unusedWordIndices = $.extend(true, [], defaultUnusedWordIndices);
@@ -194,6 +186,45 @@ function prepareApp(){
     });
 
     return Promise.all(promiseArray);
+}
+
+/**
+ * Fills each row of the vocab table with cells of info
+ * @param {HTMLTableRowElement} row the row to fill
+ * @param {object} word the word object to use for the data (from words.js)
+ */
+function fillRow(row, word){
+    var cell1 = row.insertCell();
+    var cell2 = row.insertCell();
+    var cell3 = row.insertCell();
+    var cell4 = row.insertCell();
+    var cell5 = row.insertCell();
+
+    cell1.innerHTML = word.english.join(", ");
+    
+    cell2.innerHTML = word.romazi.join("<br>");
+
+    cell3.innerHTML = word.kana.join("<br>");
+
+    var empty = true;
+    word.japanese.forEach((w,i) => {
+        if (i > 0) {
+            cell4.innerHTML += "<br>";
+        }
+        if (Kuroshiro.Util.hasKanji(w)) {
+            cell4.innerHTML += w;
+            empty = false;
+        }
+        else {
+            cell4.innerHTML += "-";
+        }
+    });
+    if (empty) {
+        row.deleteCell(3);
+        cell3.colSpan = 2;
+    }
+
+    cell5.innerHTML = word.lesson;
 }
 
 /**
@@ -262,7 +293,7 @@ function sortTable(table, column, asc = true){
             aColText = a.cells[column].innerHTML;
             bColText = b.cells[column].innerHTML;
         }
-        return aColText > bColText ? (1*dirModifier) : (-1*dirModifier);
+        return aColText.toLowerCase() > bColText.toLowerCase() ? (1*dirModifier) : (-1*dirModifier);
         
     });
     while(tBody.firstChild){
