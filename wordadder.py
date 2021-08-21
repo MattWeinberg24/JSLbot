@@ -1,7 +1,7 @@
 import os
 
 path = "newwords.txt" # path of the textfile
-categories = [("\"japanese\"", True),("\"english\"", True),("\"category\"", False), ("\"lesson\"", False), ("\"politeness\"", False), ("\"question\"", False)] # required json properties. second value determines if list or not.
+categories = [("\"japanese\"", True),("\"english\"", True),("\"category\"", False), ("\"lesson\"", False)] # json properties. second value determines if list or not.
 
 with open(path, 'w', encoding='utf8') as f:
     nextword = True
