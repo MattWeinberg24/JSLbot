@@ -4,12 +4,6 @@ kana (override): overrides Kuroshiro translations from kanzi if it gets it wrong
 english: the english translation
 category (nominals): roughly what connotation the word is used for
 lesson: the JSL lesson the word is first introduced in
-politeness: the politeness of the word.
-            honorific: used to address superiors
-            humble: used to address in-group to superiors
-            neutral: general-purpose
-            rude: don't use this word
-question: true if the word is a "question word" like "dore", "doko", "nani", etc.
 ru (verbals): true if the verbal is a "ru verbal" (JSL Terminology)
 operational (verbals): true if the verbal is operational, false if affective (JSL Terminology)
 */
@@ -80,22 +74,19 @@ var nominals = [
         "japanese": ["あなた"],
         "english": ["you"],
         "category": "person",
-        "lesson": "2B",
-        "politeness": "rude"
+        "lesson": "2B"
     },
     {
         "japanese": ["姉"],
         "english": ["older sister"],
         "category": "person",
-        "lesson": "11A",
-        "politeness": "neutral"
+        "lesson": "11A"
     },
     {
         "japanese": ["兄"],
         "english": ["older brother"],
         "category": "person",
-        "lesson": "11A",
-        "politeness": "neutral"
+        "lesson": "11A"
     },
     {
         "japanese": ["これ"],
@@ -119,7 +110,6 @@ var nominals = [
         "japanese": ["どれ"],
         "english": ["which one"],
         "category": "item",
-        "question": true,
         "lesson": "4A"
     },
     {
@@ -170,7 +160,6 @@ var nominals = [
         "japanese": ["どこ"],
         "english": ["where"],
         "category": "place",
-        "question": true,
         "lesson": "6B"
     },
     {
@@ -195,11 +184,11 @@ var nominals = [
         "japanese": ["どちら", "どっち"],
         "english": ["which side", "which way"],
         "category": "place",
-        "lesson": "6A",
-        "question": true
+        "lesson": "6A"
     },
     {
         "japanese": ["後"],
+        "kana": ["あと"],
         "english": ["later", "remaining"],
         "category": "time",
         "lesson": "8A"
@@ -225,7 +214,7 @@ var nominals = [
     {
         "japanese": ["バス"],
         "english": ["bus"],
-        "category": "item",
+        "category": "vehicle",
         "lesson": "7B"
     },
     {
@@ -271,11 +260,10 @@ var nominals = [
         "lesson": "4B"
     },
     {
-        "japanese": ["坊ちゃん"],
+        "japanese": ["息子","坊ちゃん↑"],
         "english": ["son"],
         "category": "person",
         "lesson": "10A",
-        "politeness": "honorific"
     },
     {
         "japanese": ["文房具"],
@@ -302,12 +290,10 @@ var nominals = [
         "lesson": "7A"
     },
     {
-        "japanese": ["誰"],
+        "japanese": ["誰", "何方↑"],
         "english": ["who"],
         "category": "person",
-        "lesson": "2B",
-        "politeness": "neutral",
-        "question": true
+        "lesson": "2B"
     },
     {
         "japanese": ["出口"],
@@ -315,6 +301,168 @@ var nominals = [
         "english": ["exit"],
         "category": "place",
         "lesson": "6A"
+    },
+    {
+        "japanese": ["電車"],
+        "english": ["train"],
+        "category": "vehicle",
+        "lesson": "7B"
+    },
+    {
+        "japanese": ["電話"],
+        "english": ["phone call"],
+        "category": "happening",
+        "lesson": "2A"
+    },
+    {
+        "japanese": ["デパート"],
+        "english": ["department store"],
+        "category": "place",
+        "lesson": "7A"
+    },
+    {
+        "japanese": ["ドイツ"],
+        "english": ["Germany"],
+        "category": "country",
+        "lesson": "5B"
+    },
+    {
+        "japanese": ["どう","いかが↑"],
+        "english": ["how"],
+        "category": "happening",
+        "lesson": "2A"
+    },
+    {
+        "japanese": ["土曜日"],
+        "english": ["Saturday"],
+        "category": "time",
+        "lesson": "8A"
+    },
+    {
+        "japanese": ["映画館"],
+        "english": ["movie theater"],
+        "category": "place",
+        "lesson": "6B"
+    },
+    {
+        "japanese": ["英語"],
+        "english": ["english language"],
+        "category": "language",
+        "lesson": "2A"
+    },
+    {
+        "japanese": ["英和"],
+        "english": ["english-japanese"],
+        "category": "concept",
+        "lesson": "2B"
+    },
+    {
+        "japanese": ["駅"],
+        "english": ["train"],
+        "category": "place",
+        "lesson": "6A"
+    },
+    {
+        "japanese": ["鉛筆"],
+        "english": ["pencil"],
+        "category": "item",
+        "lesson": "4B"
+    },
+    {
+        "japanese": ["外国"],
+        "english": ["foreign country"],
+        "category": "country",
+        "lesson": "11B"
+    },
+    {
+        "japanese": ["学校"],
+        "english": ["school"],
+        "category": "place",
+        "lesson": "7A"
+    },
+    {
+        "japanese": ["学生"],
+        "english": ["student"],
+        "category": "person",
+        "lesson": "2B"
+    },
+    {
+        "japanese": ["劇場"],
+        "english": ["theater", "theatre"],
+        "category": "place",
+        "lesson": "6B"
+    },
+    {
+        "japanese": ["月曜日"],
+        "english": ["Monday"],
+        "category": "time",
+        "lesson": "8A"
+    },
+    {
+        "japanese": ["銀行"],
+        "english": ["bank"],
+        "category": "place",
+        "lesson": "7A"
+    },
+    {
+        "japanese": ["五"],
+        "english": ["five"],
+        "category": "number",
+        "lesson": "2B"
+    },
+    {
+        "japanese": ["午後"],
+        "english": ["afternoon"],
+        "category": "time",
+        "lesson": "8B"
+    },
+    {
+        "japanese": ["午前"],
+        "english": ["morning"],
+        "category": "time",
+        "lesson": "8B"
+    },
+    {
+        "japanese": ["ご存じ"],
+        "english": ["knowing"],
+        "category": "happening",
+        "lesson": "10B"
+    },
+    {
+        "japanese": ["灰色", "グレー"],
+        "english": ["grey", "gray"],
+        "category": "color",
+        "lesson": "5B"
+    },
+    {
+        "japanese": ["緑", "グリーン"],
+        "english": ["green"],
+        "category": "color",
+        "lesson": "5B"
+    },
+    {
+        "japanese": ["母親", "母↓", "お母さん↑"],
+        "english": ["mom", "mother"],
+        "category": "person",
+        "lesson": "11B"
+    },
+    {
+        "japanese": ["半"],
+        "english": ["half"],
+        "category": "amount",
+        "lesson": "8B"
+    },
+    {
+        "japanese": ["花"],
+        "english": ["flower"],
+        "category": "item",
+        "lesson": "7A"
+    },
+    {
+        "japanese": ["二十歳"],
+        "english": ["20 years old", "twenty years old"],
+        "category": "age",
+        "lesson": "10A"
     }
     
 ]
@@ -389,7 +537,6 @@ var modifiers = [
     {
         "japanese": ["どんな"],
         "english": ["what kind of"],
-        "question": true,
         "lesson": "4B"
     },
     {
