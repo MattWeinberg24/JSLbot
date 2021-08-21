@@ -15,12 +15,11 @@ function initializeKuroshiro() {
  * @returns {string} The resulting JSL romazi
  */
 function nipponToJSL(nippon) {
-    console.log(nippon);
-    return nippon.replace("î","ii").replace("ô","oo").replace("ou","oo"); 
+    return nippon.replace("î","ii").replace("ô","oo").replace("ê","ee").replace("â","aa").replace("ou","oo").replace("ei","ee"); 
 }
 
 /**
- * @param {object} verbal A verbal (in the format from words.json) 
+ * @param {object} verbal A verbal (in the format from words.js) 
  * @returns {string} The stem of the verbal
  */
 function stem(verbal){
