@@ -405,12 +405,6 @@ var nominals = [
         "lesson": "7A"
     },
     {
-        "japanese": ["五"],
-        "english": ["five"],
-        "category": "number",
-        "lesson": "2B"
-    },
-    {
         "japanese": ["午後"],
         "english": ["afternoon"],
         "category": "time",
@@ -423,7 +417,7 @@ var nominals = [
         "lesson": "8B"
     },
     {
-        "japanese": ["ご存じ"],
+        "japanese": ["ご存じ↑"],
         "english": ["knowing"],
         "category": "happening",
         "lesson": "10B"
@@ -460,10 +454,107 @@ var nominals = [
     },
     {
         "japanese": ["二十歳"],
+        "kana": ["はたち"],
         "english": ["20 years old", "twenty years old"],
         "category": "age",
         "lesson": "10A"
+    },
+    {
+        "japanese": ["初めて"],
+        "english": ["first time"],
+        "lesson": "11B",
+        "category": "happening"
+    },
+    {
+        "japanese": ["二十日"],
+        "kana": ["はつか"],
+        "english": ["twentieth day of the month"],
+        "lesson": "8A",
+        "category": "day"
+    },
+    {
+        "japanese": ["辺"],
+        "kana": ["へん"],
+        "english": ["area", "vicinity"],
+        "lesson": "6A",
+        "category": "place"
+    },
+    {
+        "japanese": ["日"],
+        "english": ["day"],
+        "lesson": "10A",
+        "category": "day"
+    },
+    {
+        "japanese": ["左"],
+        "english": ["left"],
+        "lesson": "6B",
+        "category": "direction"
+    },
+    {
+        "japanese": ["飛行機"],
+        "english": ["airplane"],
+        "lesson": "7B",
+        "category": "vehicle"
+    },
+    {
+        "japanese": ["久しぶり"],
+        "english": ["a long time"],
+        "lesson": "11B",
+        "category": "happening"
+    },
+    {
+        "japanese": ["人"],
+        "english": ["person"],
+        "lesson": "10A",
+        "category": "person"
+    },
+    {
+        "japanese": ["一人"],
+        "kana": ["ひとり"],
+        "english": ["alone", "one person"],
+        "lesson": "11A",
+        "category": "happening"
+    },
+    {
+        "japanese": ["他"],
+        "kana": ["ほか"],
+        "english": ["other"],
+        "lesson": "5A",
+        "category": "relative item"
+    },
+    {
+        "japanese": ["本"],
+        "english": ["book"],
+        "lesson": "2B",
+        "category": "item"
+    },
+    {
+        "japanese": ["本当"],
+        "english": ["truth", "true"],
+        "lesson": "2B",
+        "category": "happening"
+    },
+    {
+        "japanese": ["方"],
+        "english": ["direction", "way", "side", "alternative"],
+        "lesson": "6A",
+        "category": "relative item"
+    },
+    {
+        "japanese": ["船"],
+        "english": ["boat", "ship"],
+        "lesson": "8B",
+        "category": "vehicle"
+    },
+    {
+        "japanese": ["家"],
+        "english": ["house", "home"],
+        "lesson": "7B",
+        "category": "place"
     }
+    
+    
     
 ]
     
