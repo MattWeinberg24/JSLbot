@@ -1,4 +1,9 @@
-import os
+# Usage: Edit the current_properties variable, then type out each input after running the program.
+#        After the end of the last property, press enter again to add another word,
+#        or type anything then press enter to end the program and open the textfile.
+#        If the textfile does not open automatically, navigate to it manually.
+
+import os, readline # readline fixes some terminal bugs with arrow keys
 
 path = "newwords.txt" # path of the textfile
 
@@ -7,7 +12,7 @@ properties = [("\"japanese\"", True),("\"english\"", True), ("\"lesson\"", False
 nominal_properties = [("\"category\"", False)]
 verbal_properties = [("\"ru\"", False),("\"operational\"", False)]
 
-current_properties = properties # USAGE: CONCATENATE ANY ADDITIONAL PROPERTIES YOU WANT
+current_properties = properties # Usage: Concatenate any additional properties you want
 
 with open(path, 'w', encoding='utf8') as f:
     nextword = True
@@ -32,4 +37,4 @@ with open(path, 'w', encoding='utf8') as f:
         f.write("\n},\n")
         nextword = input() == ""
 
-os.system(path) # opens the textfile
+os.system(path) # opens the textfile 
