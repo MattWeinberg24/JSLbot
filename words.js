@@ -2,8 +2,8 @@
 japanese: the kanzi (kanji) form of the word (or just kana if the word is rarely used with kanzi)
 kana (override): overrides Kuroshiro translations from kanzi if it gets it wrong
 english: the english translation
-category (nominals): roughly what connotation the word is used for
 lesson: the JSL lesson the word is first introduced in
+category (nominals): roughly what connotation the word is used for
 ru (verbals): true if the verbal is a "ru verbal" (JSL Terminology)
 operational (verbals): true if the verbal is operational, false if affective (JSL Terminology)
 */
@@ -77,13 +77,13 @@ var nominals = [
         "lesson": "2B"
     },
     {
-        "japanese": ["姉"],
+        "japanese": ["姉","お姉さん↑"],
         "english": ["older sister"],
         "category": "person",
         "lesson": "11A"
     },
     {
-        "japanese": ["兄"],
+        "japanese": ["兄", "お兄さん↑"],
         "english": ["older brother"],
         "category": "person",
         "lesson": "11A"
@@ -552,7 +552,56 @@ var nominals = [
         "english": ["house", "home"],
         "lesson": "7B",
         "category": "place"
+    },
+    {
+        "japanese": ["イギリス"],
+        "english": ["United Kingdom"],
+        "lesson": "5B",
+        "category": "country"
+    },
+    {
+        "japanese": ["いくら"],
+        "english": ["how much"],
+        "lesson": "2B",
+        "category": "amount"
+    },
+    {
+        "japanese": ["いくつ"],
+        "english": ["how many, how old"],
+        "lesson": "5B",
+        "category": "amount"
+    },
+    {
+        "japanese": ["今"],
+        "english": ["now"],
+        "lesson": "7A",
+        "category": "time"
+    },
+    {
+        "japanese": ["妹", "妹さん↑"],
+        "english": ["younger sister"],
+        "lesson": "11A",
+        "category": "person"
+    },
+    {
+        "japanese": ["インド"],
+        "english": ["India"],
+        "lesson": "5B",
+        "category": "country"
+    },
+    {
+        "japanese": ["入口"],
+        "english": ["entrance"],
+        "lesson": "6A",
+        "category": "place"
+    },
+    {
+        "japanese": ["色"],
+        "english": ["color"],
+        "lesson": "5B",
+        "category": "quality"
     }
+    
     
     
     
