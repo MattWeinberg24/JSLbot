@@ -3,7 +3,7 @@
 #        or type anything then press enter to end the program and open the textfile.
 #        If the textfile does not open automatically, navigate to it manually.
 
-import os, readline # readline fixes some terminal bugs with arrow keys
+import os
 
 path = "newwords.txt" # path of the textfile
 
