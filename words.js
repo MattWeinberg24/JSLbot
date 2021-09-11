@@ -1,3 +1,7 @@
+/*
+Note: Some words from JSL have been removed/altered depending on their usefulness in modern conversation
+*/
+
 /* Key
 japanese: the kanzi (kanji) form of the word (or just kana if the word is rarely used with kanzi)
 kana (override): overrides Kuroshiro translations from kanzi if it gets it wrong
@@ -71,7 +75,7 @@ var nominals = [
         "lesson": "4A"
     },
     {
-        "japanese": ["あなた"],
+        "japanese": ["あなた", "君"],
         "english": ["you"],
         "category": "person",
         "lesson": "2B"
@@ -470,7 +474,7 @@ var nominals = [
         "kana": ["はつか"],
         "english": ["twentieth day of the month"],
         "lesson": "8A",
-        "category": "day"
+        "category": "time"
     },
     {
         "japanese": ["辺"],
@@ -483,7 +487,7 @@ var nominals = [
         "japanese": ["日"],
         "english": ["day"],
         "lesson": "10A",
-        "category": "day"
+        "category": "time"
     },
     {
         "japanese": ["左"],
@@ -504,7 +508,7 @@ var nominals = [
         "category": "happening"
     },
     {
-        "japanese": ["人"],
+        "japanese": ["人", "方↑"],
         "english": ["person"],
         "lesson": "10A",
         "category": "person"
@@ -600,7 +604,273 @@ var nominals = [
         "english": ["color"],
         "lesson": "5B",
         "category": "quality"
+    },
+    {
+        "japanese": ["一緒"],
+        "english": ["together"],
+        "lesson": "11A",
+        "category": "happening"
+    },
+    {
+        "japanese": ["イタリア"],
+        "english": ["Italy"],
+        "lesson": "5B",
+        "category": "country"
+    },
+    {
+        "japanese": ["いとこ"],
+        "english": ["cousin"],
+        "lesson": "11B",
+        "category": "person"
+    },
+    {
+        "japanese": ["何時"],
+        "english": ["when"],
+        "lesson": "3B",
+        "category": "time"
+    },
+    {
+        "japanese": ["何れ"],
+        "english": ["someday", "sometime"],
+        "lesson": "12A",
+        "category": "time"
+    },
+    {
+        "japanese": ["角"],
+        "kana": ["かど"],
+        "english": ["street corner"],
+        "lesson": "7B",
+        "category": "place"
+    },
+    {
+        "japanese": ["帰り"],
+        "english": ["return"],
+        "lesson": "8A",
+        "category": "event"
+    },
+    {
+        "japanese": ["会議"],
+        "english": ["meeting"],
+        "lesson": "3B",
+        "category": "event"
+    },
+    {
+        "japanese": ["会議室"],
+        "english": ["meeting room"],
+        "lesson": "10B",
+        "category": "place"
+    },
+    {
+        "japanese": ["会社"],
+        "english": ["company"],
+        "lesson": "11A",
+        "category": "place"
+    },
+    {
+        "japanese": ["紙"],
+        "english": ["paper"],
+        "lesson": "4B",
+        "category": "item"
+    },
+    {
+        "japanese": ["韓国"],
+        "english": ["Korea"],
+        "lesson": "5B",
+        "category": "country"
+    },
+    {
+        "japanese": ["彼女"],
+        "english": ["she"],
+        "lesson": "10A",
+        "category": "person"
+    },
+    {
+        "japanese": ["彼"],
+        "english": ["he"],
+        "lesson": "10A",
+        "category": "person"
+    },
+    {
+        "japanese": ["変わり"],
+        "english": ["change"],
+        "lesson": "11B",
+        "category": "event"
+    },
+    {
+        "japanese": ["火曜日"],
+        "english": ["Tuesday"],
+        "lesson": "8A",
+        "category": "time"
+    },
+    {
+        "japanese": ["火事"],
+        "english": ["fire"],
+        "lesson": "9B",
+        "category": "event"
+    },
+    {
+        "japanese": ["家族"],
+        "english": ["family"],
+        "lesson": "11A",
+        "category": "people"
+    },
+    {
+        "japanese": ["ケーキ"],
+        "english": ["cake"],
+        "lesson": "3A",
+        "category": "food"
+    },
+    {
+        "japanese": ["今朝"],
+        "english": ["this morning"],
+        "lesson": "9A",
+        "category": "time"
+    },
+    {
+        "japanese": ["昨日"],
+        "english": ["yesterday"],
+        "lesson": "1A",
+        "category": "time"
+    },
+    {
+        "japanese": ["金曜日"],
+        "english": ["Friday"],
+        "lesson": "8A",
+        "category": "time"
+    },
+    {
+        "japanese": ["喫茶店"],
+        "english": ["cafe"],
+        "lesson": "7A",
+        "category": "place"
+    },
+    {
+        "japanese": ["子","子供","お子さん↑"],
+        "english": ["child"],
+        "lesson": "10A",
+        "category": "person"
+    },
+    {
+        "japanese": ["声"],
+        "english": ["voice"],
+        "lesson": "13A",
+        "category": "item"
+    },
+    {
+        "japanese": ["今晩"],
+        "english": ["tonight"],
+        "lesson": "9A",
+        "category": "time"
+    },
+    {
+        "japanese": ["今月"],
+        "english": ["this month"],
+        "lesson": "9A",
+        "category": "time"
+    },
+    {
+        "japanese": ["コンピュータ"],
+        "english": ["computer"],
+        "lesson": "3A",
+        "category": "item"
+    },
+    {
+        "japanese": ["今週"],
+        "english": ["this week"],
+        "lesson": "9A",
+        "category": "time"
+    },
+    {
+        "japanese": ["交番"],
+        "english": ["police box"],
+        "lesson": "6A",
+        "category": "place"
+    },
+    {
+        "japanese": ["公園"],
+        "english": ["park"],
+        "lesson": "6B",
+        "category": "place"
+    },
+    {
+        "japanese": ["高校"],
+        "english": ["high school"],
+        "lesson": "7A",
+        "category": "place"
+    },
+    {
+        "japanese": ["交差点"],
+        "english": ["intersection"],
+        "lesson": "7B",
+        "category": "place"
+    },
+    {
+        "japanese": ["今年"],
+        "english": ["this year"],
+        "lesson": "8B",
+        "category": "time"
+    },
+    {
+        "japanese": ["車"],
+        "english": ["car"],
+        "lesson": "5B",
+        "category": "vehicle"
+    },
+    {
+        "japanese": ["空港"],
+        "english": ["airport"],
+        "lesson": "7B",
+        "category": "place"
+    },
+    {
+        "japanese": ["客"],
+        "english": ["guest", "customer"],
+        "lesson": "10B",
+        "category": "person"
+    },
+    {
+        "japanese": ["去年"],
+        "english": ["last year"],
+        "lesson": "8B",
+        "category": "time"
+    },
+    {
+        "japanese": ["今日"],
+        "english": ["today"],
+        "lesson": "1A",
+        "category": "time"
+    },
+    {
+        "japanese": ["兄弟"],
+        "english": ["siblings"],
+        "lesson": "11A",
+        "category": "people"
+    },
+    {
+        "japanese": ["教会"],
+        "english": ["church"],
+        "lesson": "6B",
+        "category": "place"
+    },
+    {
+        "japanese": ["教科書"],
+        "english": ["textbook"],
+        "lesson": "10B",
+        "category": "item"
+    },
+    {
+        "japanese": ["教室"],
+        "english": ["classroom"],
+        "lesson": "10B",
+        "category": "place"
+    },
+    {
+        "japanese": ["前"],
+        "english": ["in front", "before"],
+        "lesson": "8A",
+        "category": "relative location"
     }
+    
     
     
     
