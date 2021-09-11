@@ -130,14 +130,14 @@ var nominals = [
     },
     {
         "japanese": ["明後日"],
-        "kana": ["あさって"],
+        "kana": ["あさって","みょうごにち"],
         "english": ["day after tomorrow"],
         "category": "time",
         "lesson": "3B"
     },
     {
         "japanese": ["明日"],
-        "kana": ["あした","あす"],
+        "kana": ["あした","あす","みょうにち"],
         "english": ["tomorrow"],
         "category": "time",
         "lesson": "1A"
@@ -264,7 +264,7 @@ var nominals = [
         "lesson": "4B"
     },
     {
-        "japanese": ["息子","坊ちゃん↑"],
+        "japanese": ["息子","息子さん↑"],
         "english": ["son"],
         "category": "person",
         "lesson": "10A",
@@ -869,8 +869,343 @@ var nominals = [
         "english": ["in front", "before"],
         "lesson": "8A",
         "category": "relative location"
+    },
+    {
+        "japanese": ["毎朝"],
+        "english": ["every morning"],
+        "lesson": "8B",
+        "category": "time"
+    },
+    {
+        "japanese": ["毎晩"],
+        "english": ["every night"],
+        "lesson": "8B",
+        "category": "time"
+    },
+    {
+        "japanese": ["毎度"],
+        "english": ["every time"],
+        "lesson": "4B",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["毎月"],
+        "kana": ["まいつき","まいげつ"],
+        "english": ["every month"],
+        "lesson": "8B",
+        "category": "time"
+    },
+    {
+        "japanese": ["毎年"],
+        "kana": ["まいとし","まいねん"],
+        "english": ["every year"],
+        "lesson": "8B",
+        "category": "time"
+    },
+    {
+        "japanese": ["毎日"],
+        "english": ["everyday"],
+        "lesson": "8B",
+        "category": "time"
+    },
+    {
+        "japanese": ["毎週"],
+        "english": ["every week"],
+        "lesson": "8B",
+        "category": "time"
+    },
+    {
+        "japanese": ["丸"],
+        "english": ["circle"],
+        "lesson": "12A",
+        "category": "shape"
+    },
+    {
+        "japanese": ["まっすぐ"],
+        "english": ["straight"],
+        "lesson": "7B",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["名刺"],
+        "english": ["business card"],
+        "lesson": "12A",
+        "category": "item"
+    },
+    {
+        "japanese": ["メッセージ"],
+        "english": ["message"],
+        "lesson": "12B",
+        "category": "item"
+    },
+    {
+        "japanese": ["右"],
+        "english": ["right"],
+        "lesson": "6B",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["皆", "皆さん↑"],
+        "english": ["everyone"],
+        "lesson": "5B",
+        "category": "people"
+    },
+    {
+        "japanese": ["ミルク"],
+        "english": ["milk"],
+        "lesson": "5B",
+        "category": "drink"
+    },
+    {
+        "japanese": ["店"],
+        "english": ["store"],
+        "lesson": "6A",
+        "category": "place"
+    },
+    {
+        "japanese": ["道"],
+        "english": ["road", "street"],
+        "lesson": "6A",
+        "category": "place"
+    },
+    {
+        "japanese": ["申し訳"],
+        "english": ["excuse"],
+        "lesson": "12A",
+        "category": "abstract item"
+    },
+    {
+        "japanese": ["モスクワ"],
+        "english": ["Moscow"],
+        "lesson": "8A",
+        "category": "city"
+    },
+    {
+        "japanese": ["持ち合わせ"],
+        "english": ["things on hand"],
+        "lesson": "12A",
+        "category": "item"
+    },
+    {
+        "japanese": ["向こう"],
+        "english": ["over there"],
+        "lesson": "6A",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["向こう側"],
+        "english": ["opposite side", "other side"],
+        "lesson": "6B",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["娘", "娘さん↑"],
+        "english": ["daughter"],
+        "lesson": "10A",
+        "category": "person"
+    },
+    {
+        "japanese": ["明晩"],
+        "english": ["tomorrow night"],
+        "lesson": "12B",
+        "category": "time"
+    },
+    {
+        "japanese": ["明朝"],
+        "english": ["tomorrow morning"],
+        "lesson": "12B",
+        "category": "time"
+    },
+    {
+        "japanese": ["名古屋"],
+        "english": ["Nagoya"],
+        "lesson": "8A",
+        "category": "city"
+    },
+    {
+        "japanese": ["名前"],
+        "english": ["name"],
+        "lesson": "7A",
+        "category": "item"
+    },
+    {
+        "japanese": ["何"],
+        "kana": ["なん","なに"],
+        "english": ["what"],
+        "lesson": "2A",
+        "category": "abstract item"
+    },
+    {
+        "japanese": ["日本"],
+        "english": ["Japan"],
+        "lesson": "5B",
+        "category": "country"
+    },
+    {
+        "japanese": ["日系人"],
+        "english": ["person of Japanese descent"],
+        "lesson": "10B",
+        "category": "person"
+    },
+    {
+        "japanese": ["日曜日"],
+        "english": ["Sunday"],
+        "lesson": "8A",
+        "category": "time"
+    },
+    {
+        "japanese": ["ノート"],
+        "english": ["notebook"],
+        "lesson": "4B",
+        "category": "item"
+    },
+    {
+        "japanese": ["ニューヨーク"],
+        "english": ["New York"],
+        "lesson": "8A",
+        "category": "city"
+    },
+    {
+        "japanese": ["叔母", "おばさん↑"],
+        "english": ["aunt"],
+        "lesson": "11B",
+        "category": "person"
+    },
+    {
+        "japanese": ["祖母", "おばあさん↑"],
+        "english": ["grandmother"],
+        "lesson": "11B",
+        "category": "person"
+    },
+    {
+        "japanese": ["妻", "奥さん↑"],
+        "english": ["wife"],
+        "lesson": "10B",
+        "category": "person"
+    },
+    {
+        "japanese": ["表"],
+        "kana": ["おもて"],
+        "english": ["front side"],
+        "lesson": "7B",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["同じ"],
+        "english": ["same"],
+        "lesson": "5B",
+        "category": "relative item"
+    },
+    {
+        "japanese": ["女"],
+        "english": ["female"],
+        "lesson": "10A",
+        "category": "person"
+    },
+    {
+        "japanese": ["大阪"],
+        "english": ["Osaka"],
+        "lesson": "8A",
+        "category": "city"
+    },
+    {
+        "japanese": ["オーストラリア"],
+        "english": ["Australia"],
+        "lesson": "5B",
+        "category": "country"
+    },
+    {
+        "japanese": ["内", "お宅↑"],
+        "english": ["home"],
+        "lesson": "7B",
+        "category": "place"
+    },
+    {
+        "japanese": ["男"],
+        "english": ["male"],
+        "lesson": "10A",
+        "category": "person"
+    },
+    {
+        "japanese": ["大人"],
+        "english": ["adult"],
+        "lesson": "10A",
+        "category": "person"
+    },
+    {
+        "japanese": ["父親", "父↓", "お父さん↑"],
+        "english": ["father", "dad"],
+        "lesson": "11B",
+        "category": "person"
+    },
+    {
+        "japanese": ["弟", "弟さん↑"],
+        "english": ["younger brother"],
+        "lesson": "11A",
+        "category": "person"
+    },
+    {
+        "japanese": ["一昨日"],
+        "english": ["day before yesterday"],
+        "lesson": "3A",
+        "category": "time"
+    },
+    {
+        "japanese": ["一昨年"],
+        "kana": ["おととし"],
+        "english": ["year before last"],
+        "lesson": "10A",
+        "category": "time"
+    },
+    {
+        "japanese": ["夫", "ご主人↑"],
+        "english": ["husband"],
+        "lesson": "10B",
+        "category": "person"
+    },
+    {
+        "japanese": ["お釣り"],
+        "english": ["change", "money returned"],
+        "lesson": "4B",
+        "category": "item"
+    },
+    {
+        "japanese": ["お茶"],
+        "english": ["tea"],
+        "lesson": "3A",
+        "category": "drink"
+    },
+    {
+        "japanese": ["親", "親御さん↑"],
+        "english": ["parent"],
+        "lesson": "11B",
+        "category": "person"
+    },
+    {
+        "japanese": ["伯父", "伯父さん↑"],
+        "english": ["uncle"],
+        "lesson": "11B",
+        "category": "person"
+    },
+    {
+        "japanese": ["祖父", "お祖父さん↑"],
+        "english": ["grandfather"],
+        "lesson": "11B",
+        "category": "person"
+    },
+    {
+        "japanese": ["坊ちゃん"],
+        "english": ["young man"],
+        "lesson": "10A",
+        "category": "person"
+    },
+    {
+        "japanese": ["お嬢さん"],
+        "english": ["young woman"],
+        "lesson": "10A",
+        "category": "person"
     }
-    
+        
     
     
     
@@ -954,6 +1289,7 @@ var modifiers = [
         "english": ["not much","not very"],
         "lesson": "4A"
     }
+
 ]
 
 var greetings = [
