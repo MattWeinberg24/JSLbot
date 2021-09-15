@@ -146,7 +146,7 @@ function randomWord(){
 function prepareApp(){
     var table = document.getElementById("vocab-list").querySelector("tbody");
     var i = 0;
-    words = nominals.concat(verbals, adjectivals, modifiers, greetings);
+    words = nominals.concat(na_nominals, verbals, adjectivals, modifiers, greetings);
 
     var promiseArray = [];
 

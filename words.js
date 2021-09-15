@@ -1204,12 +1204,57 @@ var nominals = [
         "english": ["young woman"],
         "lesson": "10A",
         "category": "person"
+    },
+    {
+        "japanese": ["話"],
+        "english": ["talking","speech"],
+        "lesson": "13A",
+        "category": "abstract item"
+    },
+    {
+        "japanese": ["故障"],
+        "english": ["out of order"],
+        "lesson": "13A",
+        "category": "happening"
+    },
+    {
+        "japanese": ["故障"],
+        "english": ["out of order"],
+        "lesson": "13A",
+        "category": "happening"
+    },
+    {
+        "japanese": ["時","時間"],
+        "english": ["time"],
+        "lesson": "13A",
+        "category": "abstract item"
+    },
+    {
+        "japanese": ["留守番"],
+        "english": ["caretaker"],
+        "lesson": "13A",
+        "category": "person"
+    },
+    
+    
+]
+
+var na_nominals = [
+    {
+        "japanese": ["変"],
+        "english": ["strange"],
+        "lesson": "13A"
+    },
+    {
+        "japanese": ["暇"],
+        "english": ["free time"],
+        "lesson": "13A"
+    },
+    {
+        "japanese": ["大切"],
+        "english": ["important"],
+        "lesson": "13A"
     }
-        
-    
-    
-    
-    
 ]
     
 var adjectivals = [
@@ -1227,9 +1272,17 @@ var adjectivals = [
         "japanese": ["青い"],
         "english": ["blue"],
         "lesson": "4A"
+    },
+    {
+        "japanese": ["遠い"],
+        "english": ["far"],
+        "lesson": "13A"
+    },
+    {
+        "japanese": ["おかしい"],
+        "english": ["funny", "strange"],
+        "lesson": "13A"
     }
-    
-    
 
 ]
 
@@ -1254,8 +1307,35 @@ var verbals = [
         "ru": false,
         "operational": true,
         "lesson": "7B" 
-    }
-
+    },
+    {
+        "japanese": ["通じる"],
+        "english": ["be open","be understood"],
+        "ru": true,
+        "operational": false,
+        "lesson": "13A" 
+    },
+    {
+        "japanese": ["聞こえる"],
+        "english": ["be heard","be audible"],
+        "ru": true,
+        "operational": false,
+        "lesson": "13A" 
+    },
+    {
+        "japanese": ["治す"],
+        "english": ["repair","heal"],
+        "ru": false,
+        "operational": true,
+        "lesson": "13A" 
+    },
+    {
+        "japanese": ["切る"],
+        "english": ["cut","cut off"],
+        "ru": false,
+        "operational": true,
+        "lesson": "13A" 
+    },
 ]
 
 var modifiers = [
