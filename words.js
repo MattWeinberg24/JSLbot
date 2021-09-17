@@ -222,12 +222,6 @@ var nominals = [
         "lesson": "7B"
     },
     {
-        "japanese": ["勉強"],
-        "english": ["study"],
-        "category": "happening",
-        "lesson": "9B"
-    },
-    {
         "japanese": ["ビール"],
         "english": ["beer"],
         "category": "drink",
@@ -1212,18 +1206,6 @@ var nominals = [
         "category": "abstract item"
     },
     {
-        "japanese": ["故障"],
-        "english": ["out of order"],
-        "lesson": "13A",
-        "category": "happening"
-    },
-    {
-        "japanese": ["故障"],
-        "english": ["out of order"],
-        "lesson": "13A",
-        "category": "happening"
-    },
-    {
         "japanese": ["時","時間"],
         "english": ["time"],
         "lesson": "13A",
@@ -1235,7 +1217,54 @@ var nominals = [
         "lesson": "13A",
         "category": "person"
     },
-    
+    {
+        "japanese": ["社長"],
+        "english": ["company president"],
+        "lesson": "13B",
+        "category": "person"
+    },
+    {
+        "japanese": ["部長"],
+        "english": ["division manager"],
+        "lesson": "13B",
+        "category": "person"
+    },
+    {
+        "japanese": ["課長"],
+        "english": ["section manager"],
+        "lesson": "13B",
+        "category": "person"
+    },
+    {
+        "japanese": ["院長"],
+        "english": ["hospital director"],
+        "lesson": "13B",
+        "category": "person"
+    },
+    {
+        "japanese": ["学長"],
+        "english": ["university president"],
+        "lesson": "13B",
+        "category": "person"
+    },
+    {
+        "japanese": ["教授"],
+        "english": ["professor"],
+        "lesson": "13B",
+        "category": "person"
+    },
+    {
+        "japanese": ["教師"],
+        "english": ["teacher"],
+        "lesson": "13B",
+        "category": "person"
+    },
+    {
+        "japanese": ["秘書"],
+        "english": ["secretary"],
+        "lesson": "13B",
+        "category": "person"
+    },
     
 ]
 
@@ -1335,6 +1364,31 @@ var verbals = [
         "ru": false,
         "operational": true,
         "lesson": "13A" 
+    },
+    {
+        "japanese": ["変わる"],
+        "english": ["change","move"],
+        "ru": false,
+        "operational": true,
+        "lesson": "13B" 
+    }
+]
+
+var suru_verbals = [
+    {
+        "japanese": ["外出"],
+        "english": ["going out"],
+        "lesson": "13B"
+    },
+    {
+        "japanese": ["故障"],
+        "english": ["out of order"],
+        "lesson": "13A"
+    },
+    {
+        "japanese": ["勉強"],
+        "english": ["study"],
+        "lesson": "9B"
     },
 ]
 
