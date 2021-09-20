@@ -1265,7 +1265,24 @@ var nominals = [
         "lesson": "13B",
         "category": "person"
     },
-    
+    {
+        "japanese": ["研究所"],
+        "english": ["research institute"],
+        "lesson": "13B",
+        "category": "place"
+    },
+    {
+        "japanese": ["実"],
+        "english": ["truth","reality"],
+        "lesson": "13B",
+        "category": "quality"
+    },
+    {
+        "japanese": ["都合"],
+        "english": ["convenience"],
+        "lesson": "13B",
+        "category": "quality"
+    },
 ]
 
 var na_nominals = [
@@ -1311,6 +1328,11 @@ var adjectivals = [
         "japanese": ["おかしい"],
         "english": ["funny", "strange"],
         "lesson": "13A"
+    },
+    {
+        "japanese": ["近い"],
+        "english": ["near"],
+        "lesson": "13B"
     }
 
 ]
