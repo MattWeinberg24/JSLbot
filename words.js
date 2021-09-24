@@ -1378,6 +1378,18 @@ var nominals = [
         "english": ["dining room"],
         "lesson": "14A",
         "category": "place"
+    },
+    {
+        "japanese": ["研究所"],
+            "english": ["research institute"],
+            "lesson": "13B",
+            "category": "place"
+    },
+    {
+            "japanese": ["実"],
+            "english": ["truth","reality"],
+            "lesson": "13B",
+            "category": "quality"
     }
 ]
 
