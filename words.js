@@ -1265,7 +1265,120 @@ var nominals = [
         "lesson": "13B",
         "category": "person"
     },
-    
+    {
+        "japanese": ["ただいま"],
+        "english": ["right now"],
+        "lesson": "13B",
+        "category": "time"
+    },
+    {
+        "japanese": ["内"],
+        "english": ["interval"],
+        "lesson": "13B",
+        "category": "time"
+    },
+    {
+        "japanese": ["都合"],
+        "english": ["convenience"],
+        "lesson": "13B",
+        "category": "abstract item"
+    },
+    {
+        "japanese": ["そう","さよう↓"],
+        "english": ["in that way"],
+        "lesson": "13B",
+        "category": "abstract item"
+    },
+    {
+        "japanese": ["魚"],
+        "english": ["fish"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["寿司"],
+        "english": ["sushi"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["刺身"],
+        "english": ["sashimi"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["天ぷら"],
+        "english": ["tempura"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["弁当"],
+        "english": ["bento"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["すき焼き"],
+        "english": ["sukiyaki"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["蕎麦"],
+        "english": ["soba"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["ご飯"],
+        "english": ["cooked rice​"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["米"],
+        "english": ["rice"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["昼ご飯","お昼↑"],
+        "english": ["lunch"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["朝ご飯"],
+        "english": ["breakfast"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["晩御飯"],
+        "english": ["breakfast"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["お腹"],
+        "english": ["stomach"],
+        "lesson": "14A",
+        "category": "body part"
+    },
+    {
+        "japanese": ["のど"],
+        "english": ["throat"],
+        "lesson": "14A",
+        "category": "body part"
+    },
+    {
+        "japanese": ["食堂"],
+        "english": ["dining room"],
+        "lesson": "14A",
+        "category": "place"
+    }
 ]
 
 var na_nominals = [
@@ -1283,6 +1396,11 @@ var na_nominals = [
         "japanese": ["大切"],
         "english": ["important"],
         "lesson": "13A"
+    },
+    {
+        "japanese": ["結構"],
+        "english": ["great"],
+        "lesson": "13B"
     }
 ]
     
@@ -1311,6 +1429,11 @@ var adjectivals = [
         "japanese": ["おかしい"],
         "english": ["funny", "strange"],
         "lesson": "13A"
+    },
+    {
+        "japanese": ["近い"],
+        "english": ["near"],
+        "lesson": "13B"
     }
 
 ]
@@ -1371,7 +1494,36 @@ var verbals = [
         "ru": false,
         "operational": true,
         "lesson": "13B" 
+    },
+    {
+        "japanese": ["戻る"],
+        "english": ["return","go back"],
+        "ru": false,
+        "operational": true,
+        "lesson": "13B" 
+    },
+    {
+        "japanese": ["伺う↓"],
+        "english": ["ask","inquire","visit"],
+        "ru": false,
+        "operational": true,
+        "lesson": "6A" 
+    },
+    {
+        "japanese": ["空く"],
+        "english": ["become empty"],
+        "ru": false,
+        "operational": false,
+        "lesson": "14A" 
+    },
+    {
+        "japanese": ["乾く"],
+        "english": ["become dry"],
+        "ru": false,
+        "operational": false,
+        "lesson": "14A" 
     }
+
 ]
 
 var suru_verbals = [
