@@ -612,7 +612,7 @@ var nominals = [
         "category": "country"
     },
     {
-        "japanese": ["いとこ"],
+        "japanese": ["いとこ","おいとこさん↑"],
         "english": ["cousin"],
         "lesson": "11B",
         "category": "person"
@@ -1356,8 +1356,8 @@ var nominals = [
         "category": "food"
     },
     {
-        "japanese": ["晩御飯"],
-        "english": ["breakfast"],
+        "japanese": ["晩ご飯"],
+        "english": ["dinner"],
         "lesson": "14A",
         "category": "food"
     },
@@ -1390,7 +1390,194 @@ var nominals = [
         "english": ["truth","reality"],
         "lesson": "13B",
         "category": "quality"
+    },
+    {
+        "japanese": ["定食"],
+        "english": ["set meal"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["パン"],
+        "english": ["bread"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["おまわりさん"],
+        "english": ["police officer"],
+        "lesson": "7B",
+        "category": "person"
+    },
+    {
+        "japanese": ["プリン"],
+        "english": ["pudding"],
+        "lesson": "3A",
+        "category": "food"
+    },
+    {
+        "japanese": ["来月"],
+        "english": ["next month"],
+        "lesson": "9A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["来年"],
+        "english": ["next year"],
+        "lesson": "9A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["来週"],
+        "english": ["next week"],
+        "lesson": "9A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["ロシア"],
+        "english": ["Russia"],
+        "lesson": "2A",
+        "category": "country"
+    },
+    {
+        "japanese": ["両親"],
+        "english": ["parents"],
+        "lesson": "11B",
+        "category": "people"
+    },
+    {
+        "japanese": ["領事"],
+        "english": ["consul"],
+        "lesson": "6B",
+        "category": "person"
+    },
+    {
+        "japanese": ["先"],
+        "english": ["ahead"],
+        "lesson": "6A",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["再来月"],
+        "english": ["month after next"],
+        "lesson": "10A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["再来年"],
+        "english": ["year after next"],
+        "lesson": "10A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["再来週"],
+        "english": ["week after next"],
+        "lesson": "10A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["食べ物"],
+        "english": ["food"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["飲み物"],
+        "english": ["drink"],
+        "lesson": "14A",
+        "category": "drink"
+    },
+    {
+        "japanese": ["塩"],
+        "english": ["salt"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["こしょう"],
+        "english": ["pepper"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["醤油"],
+        "english": ["soy sauce"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["卵"],
+        "english": ["egg"],
+        "lesson": "14A",
+        "category": "food"
+    },
+    {
+        "japanese": ["水"],
+        "english": ["water"],
+        "lesson": "14A",
+        "category": "drink"
+    },
+    {
+        "japanese": ["湯"],
+        "english": ["hot water"],
+        "lesson": "14A",
+        "category": "drink"
+    },
+    {
+        "japanese": ["氷"],
+        "english": ["ice"],
+        "lesson": "14A",
+        "category": "drink"
+    },
+    {
+        "japanese": ["半分"],
+        "english": ["half"],
+        "lesson": "14B",
+        "category": "amount"
+    },
+    {
+        "japanese": ["具合"],
+        "english": ["condition"],
+        "lesson": "14B",
+        "category": "quality"
+    },
+    {
+        "japanese": ["薬"],
+        "english": ["medicine"],
+        "lesson": "14B",
+        "category": "item"
+    },
+    {
+        "japanese": ["顔"],
+        "english": ["face"],
+        "lesson": "14B",
+        "category": "body part"
+    },
+    {
+        "japanese": ["アパート"],
+        "english": ["apartment"],
+        "lesson": "14B",
+        "category": "building"
+    },
+    {
+        "japanese": ["並"],
+        "english": ["regular"],
+        "lesson": "14B",
+        "category": "quality"
+    },
+    {
+        "japanese": ["丁目"],
+        "english": ["district"],
+        "lesson": "14B",
+        "category": "place"
+    },
+    {
+        "japanese": ["人前"],
+        "english": ["food portion"],
+        "lesson": "14B",
+        "category": "food"
     }
+    
 ]
 
 var na_nominals = [
@@ -1413,6 +1600,16 @@ var na_nominals = [
         "japanese": ["結構"],
         "english": ["great"],
         "lesson": "13B"
+    },
+    {
+        "japanese": ["健康"],
+        "english": ["healthy","health"],
+        "lesson": "14B"
+    },
+    {
+        "japanese": ["元気"],
+        "english": ["pep"],
+        "lesson": "14B"
     }
 ]
     
@@ -1446,6 +1643,11 @@ var adjectivals = [
         "japanese": ["近い"],
         "english": ["near"],
         "lesson": "13B"
+    },
+    {
+        "japanese": ["冷たい"],
+        "english": ["cold to the touch"],
+        "lesson": "14A"
     }
 
 ]
@@ -1534,8 +1736,28 @@ var verbals = [
         "ru": false,
         "operational": false,
         "lesson": "14A" 
+    },
+    {
+        "japanese": ["頼む"],
+        "english": ["request"],
+        "ru": false,
+        "operational": true,
+        "lesson": "14A" 
+    },
+    {
+        "japanese": ["吸う"],
+        "english": ["smoke"],
+        "ru": false,
+        "operational": true,
+        "lesson": "14B" 
+    },
+    {
+        "japanese": ["調べる"],
+        "english": ["investigate"],
+        "ru": true,
+        "operational": true,
+        "lesson": "14B" 
     }
-
 ]
 
 var suru_verbals = [
@@ -1554,6 +1776,16 @@ var suru_verbals = [
         "english": ["study"],
         "lesson": "9B"
     },
+    {
+        "japanese": ["注文"],
+        "english": ["place an order"],
+        "lesson": "14A"
+    },
+    {
+        "japanese": ["出前"],
+        "english": ["food delivery"],
+        "lesson": "14B",
+    }
 ]
 
 var modifiers = [
@@ -1586,6 +1818,16 @@ var modifiers = [
         "japanese": ["あまり","あんまり"],
         "english": ["not much","not very"],
         "lesson": "4A"
+    },
+    {
+        "japanese": ["もう"],
+        "english": ["already"],
+        "lesson": "14A"
+    },
+    {
+        "japanese": ["まだ"],
+        "english": ["still"],
+        "lesson": "14A"
     }
 
 ]
