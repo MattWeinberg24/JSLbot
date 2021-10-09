@@ -1,9 +1,8 @@
-var words; //holds all the current eligible words to be quizzed
+var words; //holds all the words
 var currentWord; //holds the current word
 var currentWordIndex; //holds the current word index (of the words list)
 var answered = false; //true when user has answered and is viewing the result, false otherwise
 var unusedWordIndices = []; //holds all indices of the words list that have not been answered correctly yet
-var defaultUnusedWordIndices = []; //holds the initial state of unusedWordIndices to simplify resetting
 
 //runs when website is loaded
 $(document).ready(() => {
@@ -13,29 +12,37 @@ $(document).ready(() => {
         var t2 = new Date(); //time of Kuroshiro initialization end
         console.log("Kuroshiro Initialized in " + ((t2 - t1) / 1000) + " seconds");
         prepareApp().then(() => {
+            filterLesson("1A","14B");
+            $("#jwl").val("13B");
             randomWord();
             console.log("App Prepared in " + ((new Date() - t2) / 1000) + " seconds");
             $("h1").hide();
             $("#app").show();
         }); 
     });
-    
-    $("input[name='qlang']").change(() => {
-        randomWord();
-    });
+
+    //event handlers
+    $("input[name='qlang']").change(randomWord);
+    $("#jsl-start,#jsl-end").change(resetApp);
     $("#inp").submit(e => {
         e.preventDefault();
         if(answered){
             randomWord();
-            document.getElementById("continue-button").innerHTML = "Submit";
+            $("#continue-button").html("Submit");
             answered = false;
         }
         else {
             if (confirmAnswer()) {
-                document.getElementById("continue-button").innerHTML = "Next Word";
+                $("#continue-button").html("Next Word");
                 answered = true;
             }
         }
+    });
+    $("th").each((i, th) => {
+        $(th).click(() => {
+            var isAscending = th.classList.contains("th-sort-asc");
+            sortTable($("#vocab-list").get(0), i, !isAscending);
+        });
     });
 });
 
@@ -99,15 +106,15 @@ function correct(answer){
 }
 
 /**
- * Resets the app and selects a random word.
+ * Resets the display and selects a random word.
  * Places it in the currentWord global variables.
  * Determines which format of the word to display based on user settings.
  */
 function randomWord(){
     //reset the display
-    document.getElementById("inpbox").value = "";
-    document.getElementById("result").innerHTML = "<br>";
-    document.getElementById("correct-answers").innerHTML = "<br>";
+    $("#inpbox").val("");
+    $("#result").html("<br>");
+   $("#correct-answers").html("<br>");
     
     var n = Math.floor(Math.random() * unusedWordIndices.length);
     currentWordIndex = unusedWordIndices[n];
@@ -120,17 +127,25 @@ function randomWord(){
 
     currentWord = words[currentWordIndex];
     
-    if(document.getElementById("english-option-q").checked){
+    if($("#english-option-q").is(":checked")){
         $("#word").html(currentWord.english.join(", "));
     }
-    else if(document.getElementById("romazi-option-q").checked){
+    else if($("#romazi-option-q").is(":checked")){
         $("#word").html(currentWord.romazi.join(", "));
     }
-    else if(document.getElementById("kana-option-q").checked){
+    else if($("#kana-option-q").is(":checked")){
         $("#word").html(currentWord.kana.join(", "));
     }
-    else{
-        $("#word").html(currentWord.japanese.join(", "));
+    else {
+        var lesson = $("#jwl").val();
+        var wordLesson = maxLesson(currentWord.japanese.join(""));
+        if (compareLesson(wordLesson, lesson)) {
+            $("#word").html(currentWord.kana.join(", "));
+        }
+        else {
+            $("#word").html(currentWord.japanese.join(", "));
+        }
+        
     }
     
     
@@ -139,27 +154,21 @@ function randomWord(){
 
 /**
  * Translates each word into kana and romazi using Kuroshiro
- * Fills the vocab list table
- * Fills up unusedWordIndices
  * @returns {Promise} All of Kuroshiro's convert() promises
  */
 function prepareApp(){
-    var table = document.getElementById("vocab-list").querySelector("tbody");
-    var i = 0;
+    //var table = document.getElementById("vocab-list").querySelector("tbody");
     words = nominals.concat(na_nominals, verbals, suru_verbals, adjectivals, modifiers, greetings);
 
     var promiseArray = [];
 
     words.forEach(word => {
-        defaultUnusedWordIndices.push(i++); //add index to unusedWordIndices
-        var row = table.insertRow();
-
+        //default; //add index to unusedWordIndices
         if (word.hasOwnProperty("kana")){ //if kana is overridden in words.js
             word.romazi = [];
             word.kana.forEach(k => {
                 word.romazi.push(nipponToJSL(Kuroshiro.Util.kanaToRomaji(k,"nippon")));
             });
-            fillRow(row,word);
         }
         else {
             word.kana = [];
@@ -168,29 +177,75 @@ function prepareApp(){
                 promiseArray.push(kuroshiro.convert(j, {to: "hiragana"}).then(k => {
                     word.romazi.push(nipponToJSL(Kuroshiro.Util.kanaToRomaji(k,"nippon")));
                     word.kana.push(k);
-                    if (i == word.japanese.length - 1){
-                        fillRow(row,word);
-                    }
                 }));
             })
         }
     });
-
-    unusedWordIndices = $.extend(true, [], defaultUnusedWordIndices);
-
-    $("th").each((i, th) => {
-        $(th).click(() => {
-            var isAscending = th.classList.contains("th-sort-asc");
-            sortTable($("#vocab-list").get(0), i, !isAscending);
-        });
-    });
-
+    
     return Promise.all(promiseArray);
 }
 
 /**
+ * Filters the list of words based on the lesson range, adds rows to the table accordingly.
+ * Sets up lesson dropdown menus so that start cannot end up being set to a value greater than end
+ * @param {string} start The lowest lesson to include in the filter
+ * @param {string} end The highest lesson to include in the filter
+ */
+function filterLesson(start, end) {
+    var table = $("#vocab-list tbody").get(0);
+    words.forEach((word,i) => {
+        if (!compareLesson(start, word.lesson) && !(compareLesson(word.lesson, end))){ //if start <= lesson <= end
+            unusedWordIndices.push(i);
+            fillRow(table.insertRow(), word);
+        }
+    });
+
+    var l = "1A"
+    var result = "";
+    var s = $("#jsl-start");
+    var e = $("#jsl-end");
+
+    //fill the first dropdown with lessons up to end
+    while (l != end) {
+        result += "<option value=\"" + l + "\">" + l + "</option>";
+        l = incrementLesson(l);
+    }
+    result += "<option value=\"" + l + "\">" + l + "</option>";
+    s.html(result);
+
+    //fill the second dropdown with lessons from start to max lesson
+    result = "";
+    l = start;
+    while (l != "15A") {
+        result += "<option value=\"" + l + "\">" + l + "</option>";
+        l = incrementLesson(l);
+    }
+    e.html(result);
+
+    s.val(start);
+    e.val(end);
+}
+
+/**
+ * Resets the table and unusedWordIndices
+ */
+ function resetApp(){
+    $("tr").css("background-color", "");
+    unusedWordIndices = [];
+
+    var table = $("#vocab-list tbody").get(0);
+    $("th").removeClass("th-sort-asc", "th-sort-desc");
+    while(table.firstChild){
+        table.removeChild(table.firstChild);
+    }
+
+    filterLesson($("#jsl-start").val(),$("#jsl-end").val());
+    randomWord();
+}
+
+/**
  * Fills each row of the vocab table with cells of info
- * @param {HTMLTableRowElement} row the row to fill
+ * @param {HTMLTableRowElement} row the row to add
  * @param {object} word the word object to use for the data (from words.js)
  */
 function fillRow(row, word){
@@ -228,14 +283,6 @@ function fillRow(row, word){
 }
 
 /**
- * Resets the table and unusedWordIndices
- */
-function resetApp(){
-    $("tr").css("background-color", "");
-    unusedWordIndices = $.extend(true, [], defaultUnusedWordIndices);
-}
-
-/**
  * Sorts the vocab table specifically
  * (Adapted from dcode's YouTube tutorial on sorting general HTML tables)
  * 
@@ -265,14 +312,7 @@ function sortTable(table, column, asc = true){
                 bColText = b.cells[column].innerHTML;
             }
 
-            var aSplit = aColText.split(/(\d+)/); //splits between letters and numbers
-            var bSplit = bColText.split(/(\d+)/);
-            if (aSplit[1] == bSplit[1]){ //if both rows have the same number lesson, sort by letter
-                return aSplit[2] > bSplit[2] ? (1*dirModifier) : (-1*dirModifier);
-            }
-            else { //otherwise sort by number
-                return Number(aSplit[1]) > Number(bSplit[1]) ? (1*dirModifier) : (-1*dirModifier);
-            }
+            return compareLesson(aColText,bColText) ? (1*dirModifier) : (-1*dirModifier);
         }
         else if (column == 3) {
             if (Kuroshiro.Util.hasJapanese(a.cells[column].innerHTML)) { //if kana and kanzi did not merge

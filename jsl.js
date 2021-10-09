@@ -31,8 +31,60 @@ function stem(verbal){
     }
 }
 
- function root(verbal){
-     if (verbal.ru) {
+function root(verbal){
+    if (verbal.ru) {
         
-     }
- }
+    }
+}
+
+/**
+ * Finds the highest lesson of any kanji within a single word
+ * @param {string} word The kanji word to process
+ * @returns {string} The maximum lesson of all the kanji in the word (1A if all Kana, 100A if Kanji not in data)
+ */
+function maxLesson(word){
+    var max = "1A";
+    for (var c of word){
+        if (Kuroshiro.Util.isKanji(c)){ //skip if not kanji
+            var l = kanji.get(c);
+            if (l == undefined){ //kanji is not learned if not in data
+                return "100A"; //simulates a kanji being "too hard"
+            }
+            else if (compareLesson(l,max)){ //replace max if l > max
+                max = l;
+            }
+        }
+    }
+    return max;
+}
+
+ /**
+  * @param {string} a The first lesson string 
+  * @param {string} b The second lesson string
+  * @returns {boolean} True if a is higher than b, false otherwise
+  */
+function compareLesson(a,b){
+    var aSplit = a.split(/(\d+)/); //splits between letters and numbers
+    var bSplit = b.split(/(\d+)/);
+    if (aSplit[1] == bSplit[1]){ //if both rows have the same number lesson, sort by letter
+        return aSplit[2] > bSplit[2];
+    }
+    else { //otherwise sort by number
+        return Number(aSplit[1]) > Number(bSplit[1]);
+    }
+}
+
+/**
+ * @param {string} l The lesson to increment
+ * @returns One lesson above the parameter
+ */
+function incrementLesson(l){
+    var split = l.split(/(\d+)/);
+    if (split[2] == "A"){ //if parameter is an A Lesson
+        return split[1] + "B"; //replace A with B
+    }
+    else {
+        var num = Number(split[1]) + 1; //add 1 to the lesson number
+        return num.toString() + "A";  //replace B with A
+    }
+}
