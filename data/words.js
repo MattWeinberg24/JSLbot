@@ -241,7 +241,7 @@ var nominals = [
     },
     {
         "japanese": ["僕"],
-        "english": ["I", "me"],
+        "english": ["i", "me"],
         "category": "person",
         "lesson": "2B"
     },
@@ -320,7 +320,7 @@ var nominals = [
     },
     {
         "japanese": ["ドイツ"],
-        "english": ["Germany"],
+        "english": ["germany"],
         "category": "country",
         "lesson": "5B"
     },
@@ -332,7 +332,7 @@ var nominals = [
     },
     {
         "japanese": ["土曜日"],
-        "english": ["Saturday"],
+        "english": ["saturday"],
         "category": "time",
         "lesson": "8A"
     },
@@ -392,7 +392,7 @@ var nominals = [
     },
     {
         "japanese": ["月曜日"],
-        "english": ["Monday"],
+        "english": ["monday"],
         "category": "time",
         "lesson": "8A"
     },
@@ -553,7 +553,7 @@ var nominals = [
     },
     {
         "japanese": ["イギリス"],
-        "english": ["United Kingdom"],
+        "english": ["united kingdom"],
         "lesson": "5B",
         "category": "country"
     },
@@ -583,7 +583,7 @@ var nominals = [
     },
     {
         "japanese": ["インド"],
-        "english": ["India"],
+        "english": ["india"],
         "lesson": "5B",
         "category": "country"
     },
@@ -607,7 +607,7 @@ var nominals = [
     },
     {
         "japanese": ["イタリア"],
-        "english": ["Italy"],
+        "english": ["italy"],
         "lesson": "5B",
         "category": "country"
     },
@@ -668,7 +668,7 @@ var nominals = [
     },
     {
         "japanese": ["韓国"],
-        "english": ["Korea"],
+        "english": ["korea"],
         "lesson": "5B",
         "category": "country"
     },
@@ -692,7 +692,7 @@ var nominals = [
     },
     {
         "japanese": ["火曜日"],
-        "english": ["Tuesday"],
+        "english": ["tuesday"],
         "lesson": "8A",
         "category": "time"
     },
@@ -728,7 +728,7 @@ var nominals = [
     },
     {
         "japanese": ["金曜日"],
-        "english": ["Friday"],
+        "english": ["friday"],
         "lesson": "8A",
         "category": "time"
     },
@@ -970,7 +970,7 @@ var nominals = [
     },
     {
         "japanese": ["モスクワ"],
-        "english": ["Moscow"],
+        "english": ["moscow"],
         "lesson": "8A",
         "category": "city"
     },
@@ -1031,19 +1031,19 @@ var nominals = [
     },
     {
         "japanese": ["日本"],
-        "english": ["Japan"],
+        "english": ["japan"],
         "lesson": "5B",
         "category": "country"
     },
     {
         "japanese": ["日系人"],
-        "english": ["person of Japanese descent"],
+        "english": ["person of japanese descent"],
         "lesson": "10B",
         "category": "person"
     },
     {
         "japanese": ["日曜日"],
-        "english": ["Sunday"],
+        "english": ["sunday"],
         "lesson": "8A",
         "category": "time"
     },
@@ -1055,7 +1055,7 @@ var nominals = [
     },
     {
         "japanese": ["ニューヨーク"],
-        "english": ["New York"],
+        "english": ["new york"],
         "lesson": "8A",
         "category": "city"
     },
@@ -1098,13 +1098,13 @@ var nominals = [
     },
     {
         "japanese": ["大阪"],
-        "english": ["Osaka"],
+        "english": ["osaka"],
         "lesson": "8A",
         "category": "city"
     },
     {
         "japanese": ["オーストラリア"],
-        "english": ["Australia"],
+        "english": ["australia"],
         "lesson": "5B",
         "category": "country"
     },
@@ -1429,7 +1429,7 @@ var nominals = [
     },
     {
         "japanese": ["ロシア"],
-        "english": ["Russia"],
+        "english": ["russia"],
         "lesson": "2A",
         "category": "country"
     },
@@ -1802,6 +1802,18 @@ var nominals = [
     {
         "japanese": ["一日"],
         "english": ["first day of the month"],
+        "lesson": "8A",
+        "category": "time"
+    },
+    {
+        "japanese": ["木曜日"],
+        "english": ["thursday"],
+        "lesson": "8A",
+        "category": "time"
+    },
+    {
+        "japanese": ["水曜日"],
+        "english": ["wednesday"],
         "lesson": "8A",
         "category": "time"
     }
