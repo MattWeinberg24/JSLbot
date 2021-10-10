@@ -1,8 +1,14 @@
 var words; //holds all the words
 var currentWord; //holds the current word
 var currentWordIndex; //holds the current word index (of the words list)
-var answered = false; //true when user has answered and is viewing the result, false otherwise
+
 var unusedWordIndices = []; //holds all indices of the words list that have not been answered correctly yet
+var reviewIndices = []; //holds indices of words that need to be reviewed (if answered incorrectly)
+
+var answered = false; //true when user has answered and is viewing the result, false otherwise
+
+const REVIEW_COUNT = 5; //amount of unused words to pull before reviewing one
+var count = 0; //current count in relation to the REVIEW_COUNT
 
 //runs when website is loaded
 $(document).ready(() => {
@@ -55,16 +61,34 @@ function confirmAnswer(){
     if(answer != ""){
         //locate current table row
         var tr = tableRow($("#vocab-list").get(0), currentWord.english[0])
-        
         if (correct(answer)){
             $("#result").html("はい");
-            tr.style.backgroundColor = "green";    
-            var i = unusedWordIndices.indexOf(currentWordIndex);
-            unusedWordIndices.splice(i,1);
+              
+            if (count <= REVIEW_COUNT) { //if picked from unusedWords
+                tr.style.backgroundColor = "green"; 
+                var i = unusedWordIndices.indexOf(currentWordIndex);
+                unusedWordIndices.splice(i,1); //remove from unusedWordIndices   
+            }
+            else { //if picked from review words
+                tr.style.backgroundColor = null;
+                var i = reviewIndices.indexOf(currentWordIndex);
+                reviewIndices.splice(i,1); //remove from reviewIndices
+                unusedWordIndices.push(currentWordIndex); //add to unusedWordIndices
+                count = 0;
+            }
+            
         }
         else {
             $("#result").html("いいえ");
-            tr.style.backgroundColor = "red";
+            tr.style.backgroundColor = "yellow";
+            if (count <= REVIEW_COUNT) { //if picked from unusedWords
+                var i = unusedWordIndices.indexOf(currentWordIndex);
+                unusedWordIndices.splice(i,1); //remove from unusedWordIndices
+                reviewIndices.push(currentWordIndex); //add to reviewIndices
+            }
+            else { //if picked from reviewWords
+                count = 0;
+            }
         }
         return true;
     }
@@ -114,18 +138,29 @@ function randomWord(){
     //reset the display
     $("#inpbox").val("");
     $("#result").html("<br>");
-   $("#correct-answers").html("<br>");
-    
-    var n = Math.floor(Math.random() * unusedWordIndices.length);
-    currentWordIndex = unusedWordIndices[n];
+    $("#correct-answers").html("<br>");
 
-    if (currentWordIndex == undefined){
+    //choose from unused words
+    if (unusedWordIndices.length > 0 && (reviewIndices.length == 0 || count < REVIEW_COUNT)) {
+        var n = Math.floor(Math.random() * unusedWordIndices.length);
+        currentWordIndex = unusedWordIndices[n];
+    }
+    //choose from review words
+    else if (reviewIndices.length > 0 && (unusedWordIndices.length == 0 || count == REVIEW_COUNT)) {
+        count = REVIEW_COUNT; //needed for conditions in confirmAnswer()
+        var n = Math.floor(Math.random() * reviewIndices.length);
+        currentWordIndex = reviewIndices[n];
+    }
+    //reset the pool of words
+    else {
         resetApp();
         var n = Math.floor(Math.random() * unusedWordIndices.length)
         currentWordIndex = unusedWordIndices[n];
     }
-
     currentWord = words[currentWordIndex];
+    if (reviewIndices.length > 0){
+        count++;
+    }
     
     if($("#english-option-q").is(":checked")){
         $("#word").html(currentWord.english.join(", "));
@@ -232,6 +267,8 @@ function filterLesson(start, end) {
  function resetApp(){
     $("tr").css("background-color", "");
     unusedWordIndices = [];
+    reviewIndices = [];
+    count = 0;
 
     var table = $("#vocab-list tbody").get(0);
     $("th").removeClass("th-sort-asc", "th-sort-desc");
