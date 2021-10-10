@@ -234,7 +234,7 @@ var nominals = [
         "lesson": "4B"
     },
     {
-        "japanese": ["ビル"],
+        "japanese": ["建物","ビル"],
         "english": ["building"],
         "category": "item",
         "lesson": "6A"
@@ -570,7 +570,7 @@ var nominals = [
         "category": "amount"
     },
     {
-        "japanese": ["今"],
+        "japanese": ["今","ただ今↑"],
         "english": ["now"],
         "lesson": "7A",
         "category": "time"
@@ -1012,7 +1012,7 @@ var nominals = [
     },
     {
         "japanese": ["名古屋"],
-        "english": ["Nagoya"],
+        "english": ["nagoya"],
         "lesson": "8A",
         "category": "city"
     },
@@ -1255,7 +1255,7 @@ var nominals = [
     },
     {
         "japanese": ["教師"],
-        "english": ["teacher"],
+        "english": ["classroom teacher"],
         "lesson": "13B",
         "category": "person"
     },
@@ -1264,12 +1264,6 @@ var nominals = [
         "english": ["secretary"],
         "lesson": "13B",
         "category": "person"
-    },
-    {
-        "japanese": ["ただいま"],
-        "english": ["right now"],
-        "lesson": "13B",
-        "category": "time"
     },
     {
         "japanese": ["内"],
@@ -1576,6 +1570,240 @@ var nominals = [
         "english": ["food portion"],
         "lesson": "14B",
         "category": "food"
+    },
+    {
+        "japanese": ["砂糖"],
+        "english": ["sugar"],
+        "lesson": "5B",
+        "category": "food"
+    },
+    {
+        "japanese": ["席"],
+        "english": ["seat"],
+        "lesson": "12B",
+        "category": "place"
+    },
+    {
+        "japanese": ["先月"],
+        "english": ["last month"],
+        "lesson": "10A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["先生"],
+        "english": ["teacher", "doctor", "master"],
+        "lesson": "2B",
+        "category": "person"
+    },
+    {
+        "japanese": ["先々月"],
+        "english": ["month before last"],
+        "lesson": "10A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["先々週"],
+        "english": ["week before last"],
+        "lesson": "10A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["先週"],
+        "english": ["last week"],
+        "lesson": "10A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["新聞"],
+        "english": ["newspaper"],
+        "lesson": "2B",
+        "category": "item"
+    },
+    {
+        "japanese": ["新幹線"],
+        "english": ["bullet train"],
+        "lesson": "7B",
+        "category": "vehicle"
+    },
+    {
+        "japanese": ["そば"],
+        "english": ["near"],
+        "lesson": "6B",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["スペイン"],
+        "english": ["spain"],
+        "lesson": "5B",
+        "category": "country"
+    },
+    {
+        "japanese": ["スーパー"],
+        "english": ["supermarket"],
+        "lesson": "7B",
+        "category": "place"
+    },
+    {
+        "japanese": ["数字"],
+        "english": ["number"],
+        "lesson": "12A",
+        "category": "abstract item"
+    },
+    {
+        "japanese": ["所長"],
+        "english": ["institute director"],
+        "lesson": "12B",
+        "category": "person"
+    },
+    {
+        "japanese": ["週"],
+        "english": ["week"],
+        "lesson": "10A",
+        "category": "time"
+    },
+    {
+        "japanese": ["大使"],
+        "english": ["ambassador"],
+        "lesson": "13B",
+        "category": "person"
+    },
+    {
+        "japanese": ["大使館"],
+        "english": ["embassy"],
+        "lesson": "6B",
+        "category": "place"
+    },
+    {
+        "japanese": ["台湾"],
+        "english": ["taiwan"],
+        "lesson": "5B",
+        "category": "country"
+    },
+    {
+        "japanese": ["タクシー"],
+        "english": ["taxi"],
+        "lesson": "7B",
+        "category": "vehicle"
+    },
+    {
+        "japanese": ["手洗い"],
+        "english": ["restroom","bathroom"],
+        "lesson": "6A",
+        "category": "place"
+    },
+    {
+        "japanese": ["テープ"],
+        "english": ["tape"],
+        "lesson": "3A",
+        "category": "item"
+    },
+    {
+        "japanese": ["手紙"],
+        "english": ["letter"],
+        "lesson": "2A",
+        "category": "item"
+    },
+    {
+        "japanese": ["手前"],
+        "english": ["this side"],
+        "lesson": "7B",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["テニス"],
+        "english": ["tennis"],
+        "lesson": "4A",
+        "category": "sport"
+    },
+    {
+        "japanese": ["寺"],
+        "english": ["temple"],
+        "lesson": "6B",
+        "category": "place"
+    },
+    {
+        "japanese": ["地下"],
+        "english": ["underground", "basement"],
+        "lesson": "7A",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["地下鉄"],
+        "english": ["subway"],
+        "lesson": "7B",
+        "category": "place"
+    },
+    {
+        "japanese": ["地図"],
+        "english": ["map"],
+        "lesson": "7B",
+        "category": "item"
+    },
+    {
+        "japanese": ["トイレ"],
+        "english": ["toilet"],
+        "lesson": "6A",
+        "category": "item"
+    },
+    {
+        "japanese": ["時計"],
+        "english": ["clock", "watch"],
+        "lesson": "8A",
+        "category": "item"
+    },
+    {
+        "japanese": ["所"],
+        "english": ["place"],
+        "lesson": "10B",
+        "category": "place"
+    },
+    {
+        "japanese": ["友達"],
+        "english": ["friend"],
+        "lesson": "2B",
+        "category": "person"
+    },
+    {
+        "japanese": ["隣"],
+        "english": ["next", "adjacent"],
+        "lesson": "6B",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["東京"],
+        "english": ["tokyo"],
+        "lesson": "2A",
+        "category": "city"
+    },
+    {
+        "japanese": ["年"],
+        "english": ["year"],
+        "lesson": "8B",
+        "category": "time"
+    },
+    {
+        "japanese": ["年寄り"],
+        "english": ["old person"],
+        "lesson": "10A",
+        "category": "person"
+    },
+    {
+        "japanese": ["図書館"],
+        "english": ["library"],
+        "lesson": "6B",
+        "category": "place"
+    },
+    {
+        "japanese": ["図書室"],
+        "english": ["library room"],
+        "lesson": "8B",
+        "category": "place"
+    },
+    {
+        "japanese": ["一日"],
+        "english": ["first day of the month"],
+        "lesson": "8A",
+        "category": "time"
     }
     
 ]
@@ -1783,8 +2011,13 @@ var suru_verbals = [
     },
     {
         "japanese": ["出前"],
-        "english": ["food delivery"],
-        "lesson": "14B",
+        "english": ["food delivery","delivery"],
+        "lesson": "14B"
+    },
+    {
+        "japanese": ["世話"],
+        "english": ["help","assistance"],
+        "lesson": "11B"
     }
 ]
 
@@ -1828,6 +2061,16 @@ var modifiers = [
         "japanese": ["まだ"],
         "english": ["still"],
         "lesson": "14A"
+    },
+    {
+        "japanese": ["過ぎ"],
+        "english": ["after"],
+        "lesson": "8A"
+    },
+    {
+        "japanese": ["すぐ"],
+        "english": ["soon", "immediate"],
+        "lesson": "5B"
     }
 
 ]
