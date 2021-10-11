@@ -4,7 +4,6 @@ body {
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
-    margin: 20px;
     padding: 5px;
 }
 th, td {
@@ -14,6 +13,9 @@ th {
     background-color: gray;
     cursor: pointer;
     user-select: none;
+}
+#review {
+    display: none;
 }
 .th-sort-asc, .th-sort-desc {
     background: rgba(0,0,0,0.1);

@@ -71,6 +71,7 @@ function confirmAnswer(){
             }
             else { //if picked from review words
                 tr.style.backgroundColor = null;
+                $("#new").prepend($(tr));
                 var i = reviewIndices.indexOf(currentWordIndex);
                 reviewIndices.splice(i,1); //remove from reviewIndices
                 unusedWordIndices.push(currentWordIndex); //add to unusedWordIndices
@@ -81,7 +82,8 @@ function confirmAnswer(){
         else {
             $("#result").html("いいえ");
             tr.style.backgroundColor = "yellow";
-            $("#vocab-list").prepend($(tr));
+            $("#review").show();
+            $("#review").prepend($(tr));
             if (count <= REVIEW_COUNT) { //if picked from unusedWords
                 var i = unusedWordIndices.indexOf(currentWordIndex);
                 unusedWordIndices.splice(i,1); //remove from unusedWordIndices
@@ -228,7 +230,7 @@ function prepareApp(){
  * @param {string} end The highest lesson to include in the filter
  */
 function filterLesson(start, end) {
-    var table = $("#vocab-list tbody").get(0);
+    var table = $("#new").get(0);
     words.forEach((word,i) => {
         if (!compareLesson(start, word.lesson) && !(compareLesson(word.lesson, end))){ //if start <= lesson <= end
             unusedWordIndices.push(i);
@@ -271,12 +273,9 @@ function filterLesson(start, end) {
     reviewIndices = [];
     count = 0;
 
-    var table = $("#vocab-list tbody").get(0);
+    $("#vocab-list tbody").empty();
     $("th").removeClass("th-sort-asc", "th-sort-desc");
-    while(table.firstChild){
-        table.removeChild(table.firstChild);
-    }
-
+    
     filterLesson($("#jsl-start").val(),$("#jsl-end").val());
     randomWord();
 }
@@ -329,10 +328,9 @@ function fillRow(row, word){
  * @param {boolean} asc True if the sorting will be ascending
  */
 function sortTable(table, column, asc = true){
-    var tBody = table.tBodies[0];
     var header = table.tHead.rows[0].cells;
     var dirModifier = asc ? 1 : -1;
-    var rows = Array.from(tBody.rows);
+    var rows = Array.from(table.tBodies[0].rows).concat(Array.from(table.tBodies[1].rows));
     var sortedRows = rows.sort(function(a,b){
         var aColText, bColText;
         if (column == 4){ //if sorting by lesson
@@ -374,10 +372,15 @@ function sortTable(table, column, asc = true){
         return aColText.toLowerCase() > bColText.toLowerCase() ? (1*dirModifier) : (-1*dirModifier);
         
     });
-    while(tBody.firstChild){
-        tBody.removeChild(tBody.firstChild);
-    }
-    tBody.append(...sortedRows);
+    $(table).children("tbody").empty();
+    sortedRows.forEach(row => {
+        if (row.style.backgroundColor == "yellow"){
+            $("#review").prepend($(row));
+        }
+        else {
+            $("#new").prepend($(row));
+        }
+    });
     table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
     header[column].classList.toggle("th-sort-asc",asc);
     header[column].classList.toggle("th-sort-desc",!asc);
