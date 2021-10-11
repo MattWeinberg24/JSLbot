@@ -60,7 +60,7 @@ function confirmAnswer(){
     var answer = $("#inpbox").val().toLowerCase().trim();
     if(answer != ""){
         //locate current table row
-        var tr = tableRow($("#vocab-list").get(0), currentWord.english[0])
+        var tr = tableRow($("#vocab-list").get(0), currentWord.english)
         if (correct(answer)){
             $("#result").html("はい");
               
@@ -81,6 +81,7 @@ function confirmAnswer(){
         else {
             $("#result").html("いいえ");
             tr.style.backgroundColor = "yellow";
+            $("#vocab-list").prepend($(tr));
             if (count <= REVIEW_COUNT) { //if picked from unusedWords
                 var i = unusedWordIndices.indexOf(currentWordIndex);
                 unusedWordIndices.splice(i,1); //remove from unusedWordIndices
@@ -385,13 +386,13 @@ function sortTable(table, column, asc = true){
 /**
  * Returns the row that contains the given english in the table
  * @param {HTMLTableElement} table The table to search
- * @param {string} english The english to search for
+ * @param {Array} english The english to search for
  * @returns {HTMLTableRowElement} The row of the table containing the english
  */
 function tableRow(table, english){
     var result;
     Array.from(table.rows).every(row => {
-        if (row.cells[0].innerHTML.includes(english)){
+        if (row.cells[0].innerHTML == english.join(", ")){
             result = row;
             return false;
         }

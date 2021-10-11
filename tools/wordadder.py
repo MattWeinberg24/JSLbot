@@ -12,7 +12,7 @@ properties = [("\"japanese\"", True),("\"english\"", True), ("\"lesson\"", False
 nominal_properties = [("\"category\"", False)]
 verbal_properties = [("\"ru\"", False),("\"operational\"", False)]
 
-current_properties = properties # Usage: Concatenate any additional properties you want
+current_properties = properties + nominal_properties # Usage: Concatenate any additional properties you want
 
 with open(path, 'w', encoding='utf8') as f:
     nextword = True
