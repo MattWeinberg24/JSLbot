@@ -204,7 +204,7 @@ var nominals = [
         "lesson": "6A"
     },
     {
-        "japanese": ["晩"],
+        "japanese": ["晩","夜"],
         "english": ["night"],
         "category": "time",
         "lesson": "8B"
@@ -240,7 +240,7 @@ var nominals = [
         "lesson": "6A"
     },
     {
-        "japanese": ["僕"],
+        "japanese": ["僕","私"],
         "english": ["i", "me"],
         "category": "person",
         "lesson": "2B"
@@ -1164,7 +1164,7 @@ var nominals = [
         "category": "item"
     },
     {
-        "japanese": ["お茶"],
+        "japanese": ["茶","お茶↑"],
         "english": ["tea"],
         "lesson": "3A",
         "category": "drink"
@@ -1381,7 +1381,8 @@ var nominals = [
     },
     {
         "japanese": ["実"],
-        "english": ["truth","reality"],
+        "kana": ["じつ"],
+        "english": ["reality","truth"],
         "lesson": "13B",
         "category": "quality"
     },
@@ -1816,6 +1817,162 @@ var nominals = [
         "english": ["wednesday"],
         "lesson": "8A",
         "category": "time"
+    },
+    {
+        "japanese": ["月"],
+        "english": ["moon", "month"],
+        "lesson": "8B",
+        "category": "item"
+    },
+    {
+        "japanese": ["突き当たり"],
+        "english": ["end of the street"],
+        "lesson": "7B",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["茶色"],
+        "english": ["brown"],
+        "lesson": "5B",
+        "category": "color"
+    },
+    {
+        "japanese": ["中国"],
+        "english": ["china"],
+        "lesson": "5B",
+        "category": "country"
+    },
+    {
+        "japanese": ["受付"],
+        "english": ["receptionist"],
+        "lesson": "10B",
+        "category": "person"
+    },
+    {
+        "japanese": ["裏"],
+        "english": ["reverse side", "rear"],
+        "lesson": "7B",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["後ろ"],
+        "english": ["back", "behind"],
+        "lesson": "6A",
+        "category": "relative location"
+    },
+    {
+        "japanese": ["和英辞典"],
+        "english": ["japanese-english dictionary"],
+        "lesson": "2B",
+        "category": "item"
+    },
+    {
+        "japanese": ["英和辞典"],
+        "english": ["english-japanese dictionary"],
+        "lesson": "2B",
+        "category": "item"
+    },
+    {
+        "japanese": ["八百屋"],
+        "english": ["vegetable store"],
+        "lesson": "7B",
+        "category": "place"
+    },
+    {
+        "japanese": ["休み"],
+        "english": ["rest", "vacation"],
+        "lesson": "8A",
+        "category": "event"
+    },
+    {
+        "japanese": ["横浜"],
+        "english": ["yokohama"],
+        "lesson": "8A",
+        "category": "city"
+    },
+    {
+        "japanese": ["ヨーロッパ"],
+        "english": ["europe"],
+        "lesson": "8B",
+        "category": "country"
+    },
+    {
+        "japanese": ["用事"],
+        "english": ["tasks", "errands"],
+        "lesson": "9B",
+        "category": "event"
+    },
+    {
+        "japanese": ["雪"],
+        "english": ["snow"],
+        "lesson": "4A",
+        "category": "weather"
+    },
+    {
+        "japanese": ["昨夜"],
+        "english": ["last night"],
+        "lesson": "10A",
+        "category": "relative time"
+    },
+    {
+        "japanese": ["郵便局"],
+        "english": ["post office"],
+        "lesson": "6B",
+        "category": "place"
+    },
+    {
+        "japanese": ["雑誌"],
+        "english": ["magazine"],
+        "lesson": "2B",
+        "category": "item"
+    },
+    {
+        "japanese": ["ゼミ", "セミナー"],
+        "english": ["seminar"],
+        "lesson": "10A",
+        "category": "event"
+    },
+    {
+        "japanese": ["時間"],
+        "english": ["time"],
+        "lesson": "8A",
+        "category": "time"
+    },
+    {
+        "japanese": ["事故"],
+        "english": ["accident"],
+        "lesson": "9B",
+        "category": "event"
+    },
+    {
+        "japanese": ["事務所"],
+        "english": ["office"],
+        "lesson": "11A",
+        "category": "place"
+    },
+    {
+        "japanese": ["神社"],
+        "english": ["shinto shrine"],
+        "lesson": "6B",
+        "category": "place"
+    },
+    {
+        "japanese": ["地震"],
+        "english": ["earthquake"],
+        "lesson": "9B",
+        "category": "event"
+    },
+    {
+        "japanese": ["辞書"],
+        "english": ["dictionary"],
+        "lesson": "2B",
+        "category": "item"
+    },
+    {
+        "japanese": ["自転車"],
+        "english": ["bicycle"],
+        "lesson": "7B",
+        "category": "vehicle"
     }
     
 ]
