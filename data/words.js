@@ -1973,8 +1973,97 @@ var nominals = [
         "english": ["bicycle"],
         "lesson": "7B",
         "category": "vehicle"
+    },
+    {
+        "japanese": ["箸"],
+        "english": ["chopsticks"],
+        "lesson": "15A",
+        "category": "item"
+    },
+    {
+        "japanese": ["フォーク"],
+        "english": ["fork"],
+        "lesson": "15A",
+        "category": "item"
+    },
+    {
+        "japanese": ["ナイフ"],
+        "english": ["knife"],
+        "lesson": "15A",
+        "category": "item"
+    },
+    {
+        "japanese": ["スプーン"],
+        "english": ["spoon"],
+        "lesson": "15A",
+        "category": "item"
+    },
+    {
+        "japanese": ["日本食","和食"],
+        "english": ["japanese food"],
+        "lesson": "15A",
+        "category": "food"
+    },
+    {
+        "japanese": ["洋食"],
+        "english": ["western food"],
+        "lesson": "15A",
+        "category": "food"
+    },
+    {
+        "japanese": ["物"],
+        "english": ["thing"],
+        "lesson": "15A",
+        "category": "item"
+    },
+    {
+        "japanese": ["肉"],
+        "english": ["meat"],
+        "lesson": "15A",
+        "category": "food"
+    },
+    {
+        "japanese": ["鳥"],
+        "english": ["chicken"],
+        "lesson": "15A",
+        "category": "food"
+    },
+    {
+        "japanese": ["野菜"],
+        "english": ["vegetable"],
+        "lesson": "15A",
+        "category": "food"
+    },
+    {
+        "japanese": ["果物"],
+        "english": ["fruit"],
+        "lesson": "15A",
+        "category": "food"
+    },
+    {
+        "japanese": ["菓子"],
+        "english": ["candy","cake"],
+        "lesson": "15A",
+        "category": "food"
+    },
+    {
+        "japanese": ["海"],
+        "english": ["ocean","sea"],
+        "lesson": "15A",
+        "category": "place"
+    },
+    {
+        "japanese": ["山"],
+        "english": ["mountain"],
+        "lesson": "15A",
+        "category": "place"
+    },
+    {
+        "japanese": ["土産"],
+        "english": ["souvenier"],
+        "lesson": "15A",
+        "category": "item"
     }
-    
 ]
 
 var na_nominals = [
@@ -2007,6 +2096,11 @@ var na_nominals = [
         "japanese": ["元気"],
         "english": ["pep"],
         "lesson": "14B"
+    },
+    {
+        "japanese": ["一杯"],
+        "english": ["full"],
+        "lesson": "15A"
     }
 ]
     
@@ -2154,6 +2248,13 @@ var verbals = [
         "ru": true,
         "operational": true,
         "lesson": "14B" 
+    },
+    {
+        "japanese": ["過ぎる"],
+        "english": ["pass"],
+        "ru": true,
+        "operational": true,
+        "lesson": "15A" 
     }
 ]
 
@@ -2187,6 +2288,11 @@ var suru_verbals = [
         "japanese": ["世話"],
         "english": ["help","assistance"],
         "lesson": "11B"
+    },
+    {
+        "japanese": ["勘定"],
+        "english": ["check","payment","calculation"],
+        "lesson": "15A"
     }
 ]
 
@@ -2240,6 +2346,16 @@ var modifiers = [
         "japanese": ["すぐ"],
         "english": ["soon", "immediate"],
         "lesson": "5B"
+    },
+    {
+        "japanese": ["もちろん"],
+        "english": ["of course","certainly"],
+        "lesson": "15A"
+    },
+    {
+        "japanese": ["せっかく"],
+        "english": ["with trouble"],
+        "lesson": "15A"
     }
 
 ]

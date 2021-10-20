@@ -18,8 +18,8 @@ $(document).ready(() => {
         var t2 = new Date(); //time of Kuroshiro initialization end
         console.log("Kuroshiro Initialized in " + ((t2 - t1) / 1000) + " seconds");
         prepareApp().then(() => {
-            filterLesson("1A","14B");
-            $("#jwl").val("13B");
+            filterLesson("1A","15A");
+            $("#jwl").val("14B");
             randomWord();
             console.log("App Prepared in " + ((new Date() - t2) / 1000) + " seconds");
             $("h1").hide();
