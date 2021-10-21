@@ -2063,7 +2063,14 @@ var nominals = [
         "english": ["souvenier"],
         "lesson": "15A",
         "category": "item"
+    },
+    {
+        "japanese": ["国"],
+        "english": ["country"],
+        "lesson": "15A",
+        "category": "country"
     }
+
 ]
 
 var na_nominals = [
@@ -2253,6 +2260,20 @@ var verbals = [
         "japanese": ["過ぎる"],
         "english": ["pass"],
         "ru": true,
+        "operational": true,
+        "lesson": "15A" 
+    },
+    {
+        "japanese": ["連れる"],
+        "english": ["take along"],
+        "ru": true,
+        "operational": true,
+        "lesson": "15A" 
+    },
+    {
+        "japanese": ["持つ"],
+        "english": ["take hold"],
+        "ru": false,
         "operational": true,
         "lesson": "15A" 
     }
