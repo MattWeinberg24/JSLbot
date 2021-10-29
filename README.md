@@ -1,3 +1,5 @@
+# NOTE: Development has switched to [VueJSL](https://github.com/MattWeinberg24/VueJSL)
+
 # JSLbot
 A practice app for students using the (fairly outdated) Japanese: The Spoken Language series of textbooks by Eleanor Harz Jorden in collaboration with Mari Noda.
 
